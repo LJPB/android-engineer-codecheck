@@ -25,7 +25,11 @@ class OneViewModel(
     val context: Context
 ) : ViewModel() {
 
-    // 検索結果
+    /**
+     * リポジトリの検索結果を取得する
+     * @param inputText 検索キーワード
+     * @return 検索結果として得られるリポジトリのリスト
+     */
     fun searchResults(inputText: String): List<RepositoryInfo> = runBlocking {
         val client = HttpClient(Android)
 
