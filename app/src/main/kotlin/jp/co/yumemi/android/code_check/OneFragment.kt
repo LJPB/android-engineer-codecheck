@@ -8,7 +8,6 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,15 +38,13 @@ class OneFragment : Fragment(R.layout.fragment_one) {
 
         binding.searchInputText
             .setOnEditorActionListener { editText, action, _ ->
-                if (action == EditorInfo.IME_ACTION_SEARCH) {
-                    editText.text.toString().let {
-                        viewModel.searchResults(it).apply {
-                            adapter.submitList(this)
-                        }
-                    }
-                    return@setOnEditorActionListener true
+                if (action != EditorInfo.IME_ACTION_SEARCH) return@setOnEditorActionListener false
+                val searchWord = editText.text.toString()
+                if (searchWord.isNotBlank()) {
+                    val result = viewModel.searchResults(searchWord)
+                    adapter.submitList(result)
                 }
-                return@setOnEditorActionListener false
+                return@setOnEditorActionListener true
             }
 
         binding.recyclerView.also {
