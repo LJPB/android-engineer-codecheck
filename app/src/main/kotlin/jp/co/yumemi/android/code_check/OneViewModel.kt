@@ -27,7 +27,7 @@ class OneViewModel(
 ) : ViewModel() {
 
     // 検索結果
-    fun searchResults(inputText: String): List<item> = runBlocking {
+    fun searchResults(inputText: String): List<RepositoryInfo> = runBlocking {
         val client = HttpClient(Android)
 
         return@runBlocking GlobalScope.async {
@@ -40,7 +40,7 @@ class OneViewModel(
 
             val jsonItems = jsonBody.optJSONArray("items")!!
 
-            val items = mutableListOf<item>()
+            val repositoryInfoList = mutableListOf<RepositoryInfo>()
 
             /**
              * アイテムの個数分ループする
@@ -55,8 +55,8 @@ class OneViewModel(
                 val forksCount = jsonItem.optLong("forks_conut")
                 val openIssuesCount = jsonItem.optLong("open_issues_count")
 
-                items.add(
-                    item(
+                repositoryInfoList.add(
+                    RepositoryInfo(
                         name = name,
                         ownerIconUrl = ownerIconUrl,
                         language = context.getString(R.string.written_language, language),
@@ -70,13 +70,13 @@ class OneViewModel(
 
             lastSearchDate = Date()
 
-            return@async items.toList()
+            return@async repositoryInfoList.toList()
         }.await()
     }
 }
 
 @Parcelize
-data class item(
+data class RepositoryInfo(
     val name: String,
     val ownerIconUrl: String,
     val language: String,
