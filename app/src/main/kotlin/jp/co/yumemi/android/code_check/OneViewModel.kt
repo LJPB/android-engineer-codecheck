@@ -3,7 +3,6 @@
  */
 package jp.co.yumemi.android.code_check
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.call.receive
@@ -19,11 +18,8 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
 import java.util.Date
-import kotlin.text.Typography.times
 
-class OneViewModel(
-    val context: Context
-) : ViewModel() {
+class OneViewModel : ViewModel() {
 
     /**
      * リポジトリの検索結果を取得する
@@ -61,13 +57,13 @@ class OneViewModel(
         val language = this.optString("language")
         val stargazersCount = this.optLong("stargazers_count")
         val watchersCount = this.optLong("watchers_count")
-        val forksCount = this.optLong("forks_conut")
+        val forksCount = this.optLong("forks_count")
         val openIssuesCount = this.optLong("open_issues_count")
 
         return RepositoryInfo(
             name = name,
             ownerIconUrl = ownerIconUrl,
-            language = context.getString(R.string.written_language, language),
+            language = language,
             stargazersCount = stargazersCount,
             watchersCount = watchersCount,
             forksCount = forksCount,

@@ -30,7 +30,7 @@ class TwoFragment : Fragment(R.layout.fragment_two) {
 
         binding.ownerIconView.load(repositoryInfo.ownerIconUrl)
         binding.nameView.text = repositoryInfo.name
-        binding.languageView.text = repositoryInfo.language
+        binding.languageView.text = getString(R.string.written_language, repositoryInfo.language)
         binding.starsView.text = "${repositoryInfo.stargazersCount} stars"
         binding.watchersView.text = "${repositoryInfo.watchersCount} watchers"
         binding.forksView.text = "${repositoryInfo.forksCount} forks"
