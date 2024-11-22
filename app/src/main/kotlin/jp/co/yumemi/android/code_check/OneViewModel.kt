@@ -19,6 +19,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
 import java.util.Date
+import kotlin.text.Typography.times
 
 class OneViewModel(
     val context: Context
@@ -35,37 +36,38 @@ class OneViewModel(
             }
 
             val jsonBody = JSONObject(response.receive<String>())
-
             val jsonItems = jsonBody.optJSONArray("items")!!
 
             val repositoryInfoList = mutableListOf<RepositoryInfo>()
 
-            for (i in 0 until jsonItems.length()) {
-                val jsonItem = jsonItems.optJSONObject(i)!!
-                val name = jsonItem.optString("full_name")
-                val ownerIconUrl = jsonItem.optJSONObject("owner")!!.optString("avatar_url")
-                val language = jsonItem.optString("language")
-                val stargazersCount = jsonItem.optLong("stargazers_count")
-                val watchersCount = jsonItem.optLong("watchers_count")
-                val forksCount = jsonItem.optLong("forks_conut")
-                val openIssuesCount = jsonItem.optLong("open_issues_count")
-
-                repositoryInfoList.add(
-                    RepositoryInfo(
-                        name = name,
-                        ownerIconUrl = ownerIconUrl,
-                        language = context.getString(R.string.written_language, language),
-                        stargazersCount = stargazersCount,
-                        watchersCount = watchersCount,
-                        forksCount = forksCount,
-                        openIssuesCount = openIssuesCount
-                    )
-                )
+            repeat(jsonItems.length()) { count ->
+                val jsonItem = jsonItems.optJSONObject(count)!!
+                repositoryInfoList.add(jsonItem.toRepositoryInfo())
             }
 
             lastSearchDate = Date()
 
             return@async repositoryInfoList.toList()
         }.await()
+    }
+
+    private fun JSONObject.toRepositoryInfo(): RepositoryInfo {
+        val name = this.optString("full_name")
+        val ownerIconUrl = this.optJSONObject("owner")!!.optString("avatar_url")
+        val language = this.optString("language")
+        val stargazersCount = this.optLong("stargazers_count")
+        val watchersCount = this.optLong("watchers_count")
+        val forksCount = this.optLong("forks_conut")
+        val openIssuesCount = this.optLong("open_issues_count")
+
+        return RepositoryInfo(
+            name = name,
+            ownerIconUrl = ownerIconUrl,
+            language = context.getString(R.string.written_language, language),
+            stargazersCount = stargazersCount,
+            watchersCount = watchersCount,
+            forksCount = forksCount,
+            openIssuesCount = openIssuesCount
+        )
     }
 }
