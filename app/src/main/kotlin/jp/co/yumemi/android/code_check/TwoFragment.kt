@@ -16,24 +16,24 @@ class TwoFragment : Fragment(R.layout.fragment_two) {
 
     private val args: TwoFragmentArgs by navArgs()
 
-    private var binding: FragmentTwoBinding? = null
-    private val _binding get() = binding!!
+    private var _binding: FragmentTwoBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         Log.d("検索した日時", lastSearchDate.toString())
 
-        binding = FragmentTwoBinding.bind(view)
+        _binding = FragmentTwoBinding.bind(view)
 
-        var item = args.item
+        val repositoryInfo = args.repositoryInfo
 
-        _binding.ownerIconView.load(item.ownerIconUrl);
-        _binding.nameView.text = item.name;
-        _binding.languageView.text = item.language;
-        _binding.starsView.text = "${item.stargazersCount} stars";
-        _binding.watchersView.text = "${item.watchersCount} watchers";
-        _binding.forksView.text = "${item.forksCount} forks";
-        _binding.openIssuesView.text = "${item.openIssuesCount} open issues";
+        binding.ownerIconView.load(repositoryInfo.ownerIconUrl)
+        binding.nameView.text = repositoryInfo.name
+        binding.languageView.text = repositoryInfo.language
+        binding.starsView.text = "${repositoryInfo.stargazersCount} stars"
+        binding.watchersView.text = "${repositoryInfo.watchersCount} watchers"
+        binding.forksView.text = "${repositoryInfo.forksCount} forks"
+        binding.openIssuesView.text = "${repositoryInfo.openIssuesCount} open issues"
     }
 }

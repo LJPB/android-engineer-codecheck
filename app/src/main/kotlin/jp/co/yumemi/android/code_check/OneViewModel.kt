@@ -4,30 +4,33 @@
 package jp.co.yumemi.android.code_check
 
 import android.content.Context
-import android.os.Parcelable
 import androidx.lifecycle.ViewModel
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.engine.android.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
+import io.ktor.client.HttpClient
+import io.ktor.client.call.receive
+import io.ktor.client.engine.android.Android
+import io.ktor.client.request.get
+import io.ktor.client.request.header
+import io.ktor.client.request.parameter
+import io.ktor.client.statement.HttpResponse
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
+import jp.co.yumemi.android.code_check.data.RepositoryInfo
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import kotlinx.parcelize.Parcelize
 import org.json.JSONObject
-import java.util.*
+import java.util.Date
+import kotlin.text.Typography.times
 
-/**
- * TwoFragment で使う
- */
 class OneViewModel(
     val context: Context
 ) : ViewModel() {
 
-    // 検索結果
-    fun searchResults(inputText: String): List<item> = runBlocking {
+    /**
+     * リポジトリの検索結果を取得する
+     * @param inputText 検索キーワード
+     * @return 検索結果として得られるリポジトリのリスト
+     */
+    fun searchResults(inputText: String): List<RepositoryInfo> = runBlocking {
         val client = HttpClient(Android)
 
         return@runBlocking GlobalScope.async {
@@ -37,51 +40,38 @@ class OneViewModel(
             }
 
             val jsonBody = JSONObject(response.receive<String>())
-
             val jsonItems = jsonBody.optJSONArray("items")!!
 
-            val items = mutableListOf<item>()
+            val repositoryInfoList = mutableListOf<RepositoryInfo>()
 
-            /**
-             * アイテムの個数分ループする
-             */
-            for (i in 0 until jsonItems.length()) {
-                val jsonItem = jsonItems.optJSONObject(i)!!
-                val name = jsonItem.optString("full_name")
-                val ownerIconUrl = jsonItem.optJSONObject("owner")!!.optString("avatar_url")
-                val language = jsonItem.optString("language")
-                val stargazersCount = jsonItem.optLong("stargazers_count")
-                val watchersCount = jsonItem.optLong("watchers_count")
-                val forksCount = jsonItem.optLong("forks_conut")
-                val openIssuesCount = jsonItem.optLong("open_issues_count")
-
-                items.add(
-                    item(
-                        name = name,
-                        ownerIconUrl = ownerIconUrl,
-                        language = context.getString(R.string.written_language, language),
-                        stargazersCount = stargazersCount,
-                        watchersCount = watchersCount,
-                        forksCount = forksCount,
-                        openIssuesCount = openIssuesCount
-                    )
-                )
+            repeat(jsonItems.length()) { count ->
+                val jsonItem = jsonItems.optJSONObject(count)!!
+                repositoryInfoList.add(jsonItem.toRepositoryInfo())
             }
 
             lastSearchDate = Date()
 
-            return@async items.toList()
+            return@async repositoryInfoList.toList()
         }.await()
     }
-}
 
-@Parcelize
-data class item(
-    val name: String,
-    val ownerIconUrl: String,
-    val language: String,
-    val stargazersCount: Long,
-    val watchersCount: Long,
-    val forksCount: Long,
-    val openIssuesCount: Long,
-) : Parcelable
+    private fun JSONObject.toRepositoryInfo(): RepositoryInfo {
+        val name = this.optString("full_name")
+        val ownerIconUrl = this.optJSONObject("owner")!!.optString("avatar_url")
+        val language = this.optString("language")
+        val stargazersCount = this.optLong("stargazers_count")
+        val watchersCount = this.optLong("watchers_count")
+        val forksCount = this.optLong("forks_conut")
+        val openIssuesCount = this.optLong("open_issues_count")
+
+        return RepositoryInfo(
+            name = name,
+            ownerIconUrl = ownerIconUrl,
+            language = context.getString(R.string.written_language, language),
+            stargazersCount = stargazersCount,
+            watchersCount = watchersCount,
+            forksCount = forksCount,
+            openIssuesCount = openIssuesCount
+        )
+    }
+}
