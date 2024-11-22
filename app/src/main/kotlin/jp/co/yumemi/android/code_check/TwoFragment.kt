@@ -28,12 +28,12 @@ class TwoFragment : Fragment(R.layout.fragment_two) {
 
         var repositoryInfo = args.repositoryInfo
 
-        binding.ownerIconView.load(repositoryInfo.ownerIconUrl);
-        binding.nameView.text = repositoryInfo.name;
-        binding.languageView.text = repositoryInfo.language;
-        binding.starsView.text = "${repositoryInfo.stargazersCount} stars";
-        binding.watchersView.text = "${repositoryInfo.watchersCount} watchers";
-        binding.forksView.text = "${repositoryInfo.forksCount} forks";
-        binding.openIssuesView.text = "${repositoryInfo.openIssuesCount} open issues";
+        binding.ownerIconView.load(repositoryInfo.ownerIconUrl)
+        binding.nameView.text = repositoryInfo.name
+        binding.languageView.text = repositoryInfo.language
+        binding.starsView.text = "${repositoryInfo.stargazersCount} stars"
+        binding.watchersView.text = "${repositoryInfo.watchersCount} watchers"
+        binding.forksView.text = "${repositoryInfo.forksCount} forks"
+        binding.openIssuesView.text = "${repositoryInfo.openIssuesCount} open issues"
     }
 }
