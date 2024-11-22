@@ -91,3 +91,9 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+# add
+/.idea/deploymentTargetSelector.xml
+/.idea/kotlinc.xml
+/.idea/migrations.xml
+/.idea/runConfigurations.xml
