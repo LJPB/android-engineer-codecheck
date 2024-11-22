@@ -57,7 +57,7 @@ class OneViewModel : ViewModel() {
         val language = this.optString("language")
         val stargazersCount = this.optLong("stargazers_count")
         val watchersCount = this.optLong("watchers_count")
-        val forksCount = this.optLong("forks_conut")
+        val forksCount = this.optLong("forks_count")
         val openIssuesCount = this.optLong("open_issues_count")
 
         return RepositoryInfo(
