@@ -26,7 +26,7 @@ class TwoFragment : Fragment(R.layout.fragment_two) {
 
         _binding = FragmentTwoBinding.bind(view)
 
-        var repositoryInfo = args.repositoryInfo
+        val repositoryInfo = args.repositoryInfo
 
         binding.ownerIconView.load(repositoryInfo.ownerIconUrl)
         binding.nameView.text = repositoryInfo.name
