@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.data.RepositoryInfo
+import jp.co.yumemi.android.code_check.data.structure.github.RepositoryInfo
 
 class RepositoryListAdapter(
     private val onItemClickListener: OnItemClickListener,
