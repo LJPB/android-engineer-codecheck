@@ -47,4 +47,14 @@ class LinkHeaderParserTest {
         assertNull(actualUrl)
     }
 
+    /**
+     * URLが不正な形式の場合にちゃんとnullが返ってくるかのテスト
+     */
+    @Test
+    fun getUrlTestInvalidUrl() {
+        val brokenLinkHeader = "<https://a.a>; rel=\"$nextRelValue\""
+        val actualUrl = LinkHeaderParser.getLink(brokenLinkHeader, nextRelValue)
+        assertNull(actualUrl)
+    }
+
 }

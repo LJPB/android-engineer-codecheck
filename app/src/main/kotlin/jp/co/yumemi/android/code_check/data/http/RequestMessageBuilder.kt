@@ -11,12 +11,12 @@ import jp.co.yumemi.android.code_check.data.structure.http.UrlParameter
  * [RequestMessage]を作るためのクラス
  */
 class RequestMessageBuilder(
-    private val urlProtocol: URLProtocol,
-    private val httpMethod: HttpMethod,
-    private val host: String,
-    private val headersBuilder: HeadersBuilder,
-    private val pathSegments: List<String>,
-    private val defaultParameters: List<UrlParameter>
+    val urlProtocol: URLProtocol,
+    val httpMethod: HttpMethod,
+    val host: String,
+    val headersBuilder: HeadersBuilder,
+    val pathSegments: List<String>,
+    val defaultParameters: List<UrlParameter>
 ) {
     /**
      * 追加するクエリパラメータのリスト
@@ -42,14 +42,14 @@ class RequestMessageBuilder(
             requestUrlBuilder = createUrlBuilder(),
             requestHeaders = headersBuilder
         )
-        initTmp()
+        initAddParameters()
         return message
     }
 
     /**
      * [appendParameter]で追加したクエリパラメータのリセット
      */
-    private fun initTmp() {
+    private fun initAddParameters() {
         addParameters = mutableListOf()
     }
 

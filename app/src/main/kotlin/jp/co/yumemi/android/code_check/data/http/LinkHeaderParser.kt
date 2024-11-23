@@ -1,5 +1,8 @@
 package jp.co.yumemi.android.code_check.data.http
 
+import android.util.Patterns
+import androidx.core.util.PatternsCompat
+
 object LinkHeaderParser {
     // URLとrelの組を扱いやすくするためのもの
     private data class LinkHeader(val url: String, val rel: String)
@@ -40,7 +43,15 @@ object LinkHeaderParser {
             val regex = Regex("""<([^>]+)>""") // <URL>から<>を取り除くためのパターン
             val match = regex.find(urlTmp) ?: return@forEach // URLを取得できなければスキップ
             val url = match.groups[1]?.value ?: return@forEach // URLを取得できなければスキップ
-            linkHeaderList.add(LinkHeader(url, rel))
+
+            // URLの形式のチェック
+            val isValidUrl = PatternsCompat.WEB_URL.matcher(url).matches()
+            if (isValidUrl) linkHeaderList.add(
+                LinkHeader(
+                    url,
+                    rel
+                )
+            ) else return@forEach // URLの形式が不正ならスキップ
         }
         return linkHeaderList.toList()
     }
