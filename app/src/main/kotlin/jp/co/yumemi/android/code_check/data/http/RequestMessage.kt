@@ -6,6 +6,6 @@ import io.ktor.http.URLBuilder
 
 data class RequestMessage(
     val requestMethod: HttpMethod,
-    val requestUrl: URLBuilder,
+    val requestUrlBuilder: URLBuilder,
     val requestHeaders: HeadersBuilder
 )

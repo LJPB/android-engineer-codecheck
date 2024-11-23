@@ -5,8 +5,6 @@ import io.ktor.client.request.headers
 import io.ktor.client.request.request
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
-import io.ktor.client.utils.EmptyContent.headers
-import io.ktor.utils.io.core.use
 
 /**
  * HTTPリクエストを実行するためのメソッドを持ったクラス
@@ -22,7 +20,7 @@ object HttpRequestExecutor {
     suspend fun getResponse(client: HttpClient, requestMessage: RequestMessage): HttpResponse =
         client.request {
             method = requestMessage.requestMethod
-            url(requestMessage.requestUrl.build())
+            url(requestMessage.requestUrlBuilder.build())
             headers { requestMessage.requestHeaders }
         }
 }
