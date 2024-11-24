@@ -19,6 +19,7 @@ import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
 import java.util.Date
 
+@Deprecated("削除予定。RepositorySearchViewModelを使う。")
 class OneViewModel : ViewModel() {
 
     /**
