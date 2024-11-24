@@ -9,19 +9,16 @@ import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.plugins.UserAgent
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.statement.bodyAsText
-import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import jp.co.yumemi.android.code_check.data.http.HttpClientProvider
+import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes.RATE_LIMIT_STATUS_CODES
+import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes.SERVER_RESPONSE_ERROR
+import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes.VALIDATION_FAILED
 import kotlinx.serialization.json.Json
 
 object GitHubHttpClientProvider : HttpClientProvider {
     private var client: HttpClient? = null
     private const val TIME_OUT_MILLS = 5000L // 5秒でタイムアウト
-
-    // リポジトリー検索で発生しうるステータスコード
-    // https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes
-    private val error422 = HttpStatusCode.fromValue(422)
-    private val error503 = HttpStatusCode.fromValue(503)
 
     @Synchronized
     override fun getClient(): HttpClient {
@@ -48,12 +45,12 @@ object GitHubHttpClientProvider : HttpClientProvider {
                         val exceptionResponse = clientException.response
                         val exceptionResponseText = exceptionResponse.bodyAsText()
                         when (exceptionResponse.status) {
-                            error422 -> throw ValidationFailedException(
+                            in VALIDATION_FAILED -> throw ValidationFailedException(
                                 exceptionResponse,
                                 exceptionResponseText
                             )
 
-                            error503 -> throw ServerResponseException(
+                            in SERVER_RESPONSE_ERROR -> throw ServerResponseException(
                                 exceptionResponse,
                                 exceptionResponseText
                             )

@@ -2,15 +2,7 @@ package jp.co.yumemi.android.code_check.data.http.github
 
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.HttpResponse
-import io.ktor.http.HttpStatusCode
 import jp.co.yumemi.android.code_check.data.structure.github.RateLimitData
-
-// レート制限時に発生するステータスコード
-// https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes
-val RATE_LIMIT_STATUS_CODES = setOf(
-    HttpStatusCode.fromValue(403),
-    HttpStatusCode.fromValue(429)
-)
 
 /**
  * GitHubのレート制限に引っかかった時の例外
