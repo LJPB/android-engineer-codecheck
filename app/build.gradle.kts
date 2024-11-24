@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -23,10 +24,10 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled =  true
+            isMinifyEnabled = true
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
@@ -39,6 +40,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
     }
 }
 
@@ -67,7 +69,26 @@ dependencies {
 
     implementation(libs.coil)
 
+    // Compose関連
+    val composeBom = platform("androidx.compose:compose-bom:2024.10.01")
+    implementation(composeBom)
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
+    androidTestImplementation(composeBom)
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+    // UI Tests
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("androidx.activity:activity-compose:1.9.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
+
+    // JUnit
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+
     androidTestImplementation(libs.androidx.espresso.core)
 }

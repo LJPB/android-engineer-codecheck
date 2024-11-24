@@ -42,3 +42,4 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 
 [plugins]
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
