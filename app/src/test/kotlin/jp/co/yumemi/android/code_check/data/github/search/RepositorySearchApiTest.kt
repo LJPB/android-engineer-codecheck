@@ -4,7 +4,7 @@ import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLProtocol
-import jp.co.yumemi.android.code_check.data.http.AndroidHttpClientProvider
+import jp.co.yumemi.android.code_check.data.http.github.GitHubHttpClientProvider
 import jp.co.yumemi.android.code_check.data.http.RequestMessageBuilder
 import jp.co.yumemi.android.code_check.data.http.github.RepositorySearchApi
 import kotlinx.coroutines.runBlocking
@@ -12,7 +12,7 @@ import org.junit.Before
 import org.junit.Test
 
 class RepositorySearchApiTest {
-    private val clientProvider = AndroidHttpClientProvider
+    private val clientProvider = GitHubHttpClientProvider
     private lateinit var requestMessageBuilder: RequestMessageBuilder
     private lateinit var repositorySearchApi: RepositorySearchApi
 

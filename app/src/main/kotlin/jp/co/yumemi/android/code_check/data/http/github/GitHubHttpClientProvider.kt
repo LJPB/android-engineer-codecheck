@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.http
+package jp.co.yumemi.android.code_check.data.http.github
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
@@ -11,12 +11,10 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
-import jp.co.yumemi.android.code_check.data.http.github.RATE_LIMIT_STATUS_CODES
-import jp.co.yumemi.android.code_check.data.http.github.RateLimitException
-import jp.co.yumemi.android.code_check.data.http.github.ValidationFailedException
+import jp.co.yumemi.android.code_check.data.http.HttpClientProvider
 import kotlinx.serialization.json.Json
 
-object AndroidHttpClientProvider : HttpClientProvider {
+object GitHubHttpClientProvider : HttpClientProvider {
     private var client: HttpClient? = null
     private const val TIME_OUT_MILLS = 5000L // 5秒でタイムアウト
 
