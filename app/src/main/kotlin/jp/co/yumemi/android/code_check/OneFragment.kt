@@ -3,6 +3,8 @@
  */
 package jp.co.yumemi.android.code_check
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -15,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
+import jp.co.yumemi.android.code_check.data.http.NetworkState
 import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryInfo
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryItem
@@ -57,8 +60,10 @@ class OneFragment : Fragment(R.layout.fragment_one) {
                 if (action != EditorInfo.IME_ACTION_SEARCH) return@setOnEditorActionListener false
                 val searchWord = editText.text.toString()
                 if (searchWord.isNotBlank()) {
-                    repositorySearchViewModel.searchWithWord(searchWord)
-                    lastSearchDate = Date()
+                    if (NetworkState.isActiveNetwork(context)) {
+                        lastSearchDate = Date()
+                        repositorySearchViewModel.searchWithWord(searchWord)
+                    }
                 }
                 return@setOnEditorActionListener true
             }
