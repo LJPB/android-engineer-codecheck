@@ -33,16 +33,16 @@ data class RepositoryItem(
     val language: String?,
 
     @SerialName("stargazers_count")
-    val stargazersCount: Int,
+    val stargazersCount: Long,
 
     @SerialName("watchers_count")
-    val watchersCount: Int,
+    val watchersCount: Long,
 
     @SerialName("forks_count")
-    val forksCount: Int,
+    val forksCount: Long,
 
     @SerialName("open_issues_count")
-    val openIssuesCount: Int,
+    val openIssuesCount: Long,
 )
 
 /**
