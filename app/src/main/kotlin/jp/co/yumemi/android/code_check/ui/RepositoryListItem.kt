@@ -1,5 +1,9 @@
 package jp.co.yumemi.android.code_check.ui
 
+import androidx.compose.foundation.clickable
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -13,25 +17,25 @@ import jp.co.yumemi.android.code_check.data.structure.github.RepositoryItem
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
 
 /**
- * リポジトリーの検索結果をリストで表示する際の各々のアイテム(リポジトリー)
+ * リポジトリーの検索結果をリスト([RepositoryList])で表示する際の各々のアイテム(リポジトリー)
  * @param repositoryItem 対象となるリポジトリー
  */
 @Composable
 fun RepositoryListItem(
     modifier: Modifier = Modifier,
-    repositoryItem: RepositoryItem
+    repositoryItem: RepositoryItem,
+    itemOnClick: (RepositoryItem) -> Unit = {}
 ) {
-    Text(
-        modifier = modifier
-            .padding(
-                horizontal = 16.dp,
-                vertical = 8.dp
-            )
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        fontSize = 12.sp,
-        text = repositoryItem.fullName
-    )
+    Box(modifier = modifier.clickable { itemOnClick(repositoryItem) }) {
+        Text(
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            fontSize = 12.sp,
+            text = repositoryItem.fullName
+        )
+    }
 }
 
 @Preview(showBackground = true)
