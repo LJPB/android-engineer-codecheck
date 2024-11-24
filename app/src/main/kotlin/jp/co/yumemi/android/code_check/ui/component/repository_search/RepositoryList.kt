@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui
+package jp.co.yumemi.android.code_check.ui.component.repository_search
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn

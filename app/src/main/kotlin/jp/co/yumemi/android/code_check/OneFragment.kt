@@ -17,7 +17,7 @@ import jp.co.yumemi.android.code_check.data.http.NetworkState
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryInfo
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryItem
 import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
-import jp.co.yumemi.android.code_check.ui.RepositoryList
+import jp.co.yumemi.android.code_check.ui.component.repository_search.RepositoryList
 import jp.co.yumemi.android.code_check.ui.RepositorySearchViewModel
 import jp.co.yumemi.android.code_check.ui.ViewModelProvider
 import java.util.Date
