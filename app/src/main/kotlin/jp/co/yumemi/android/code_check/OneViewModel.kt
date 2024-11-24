@@ -5,12 +5,12 @@ package jp.co.yumemi.android.code_check
 
 import androidx.lifecycle.ViewModel
 import io.ktor.client.HttpClient
-import io.ktor.client.call.receive
 import io.ktor.client.engine.android.Android
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryInfo
 import kotlinx.coroutines.GlobalScope
@@ -35,7 +35,9 @@ class OneViewModel : ViewModel() {
                 parameter("q", inputText)
             }
 
-            val jsonBody = JSONObject(response.receive<String>())
+//            val jsonBody = JSONObject(response.receive<String>())
+            // 応急処置
+            val jsonBody = JSONObject(response.bodyAsText())
             val jsonItems = jsonBody.optJSONArray("items")!!
 
             val repositoryInfoList = mutableListOf<RepositoryInfo>()

@@ -4,6 +4,7 @@ import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpMethod
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
+import io.ktor.http.path
 import jp.co.yumemi.android.code_check.data.structure.http.RequestMessage
 import jp.co.yumemi.android.code_check.data.structure.http.UrlParameter
 
@@ -60,8 +61,8 @@ class RequestMessageBuilder(
         val urlBuilder = URLBuilder(
             protocol = urlProtocol,
             host = host,
+            pathSegments = pathSegments
         ).run {
-            if (pathSegments.isNotEmpty()) path(pathSegments)
             defaultParameters.forEach { param ->
                 parameters.append(param.key, param.value)
             }

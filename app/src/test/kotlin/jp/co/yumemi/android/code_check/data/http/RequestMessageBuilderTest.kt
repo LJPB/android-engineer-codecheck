@@ -4,6 +4,7 @@ import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpMethod
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
+import io.ktor.http.path
 import jp.co.yumemi.android.code_check.data.structure.http.RequestMessage
 import jp.co.yumemi.android.code_check.data.structure.http.UrlParameter
 import junit.framework.TestCase.assertEquals
@@ -46,8 +47,8 @@ class RequestMessageBuilderTest {
             requestUrlBuilder = URLBuilder(
                 protocol = urlProtocol,
                 host = host,
+                pathSegments = pathSegments
             ).run {
-                path(pathSegments)
                 defaultParameters.forEach { param -> parameters.append(param.key, param.value) }
                 this
             },
@@ -91,8 +92,8 @@ class RequestMessageBuilderTest {
             requestUrlBuilder = URLBuilder(
                 protocol = urlProtocol,
                 host = host,
+                pathSegments = pathSegments
             ).run {
-                path(pathSegments)
                 defaultParameters.forEach { param -> parameters.append(param.key, param.value) }
                 addParameters.forEach { param -> parameters.append(param.key, param.value) }
                 this
@@ -137,8 +138,8 @@ class RequestMessageBuilderTest {
             requestUrlBuilder = URLBuilder(
                 protocol = urlProtocol,
                 host = host,
+                pathSegments = pathSegments
             ).run {
-                path(pathSegments)
                 defaultParameters.forEach { param -> parameters.append(param.key, param.value) }
                 this
             },
