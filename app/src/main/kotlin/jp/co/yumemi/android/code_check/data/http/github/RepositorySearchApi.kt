@@ -42,12 +42,6 @@ class RepositorySearchApi(
     }
 
     /**
-     * 渡された[httpResponse]をから次のページのURLを取得する。次のページがなければnullを返す。
-     */
-    fun getNextUrl(httpResponse: HttpResponse): String? =
-        getPageUrl(httpResponse, LinkRelValue.Next)
-
-    /**
      * [urlString]に対応するHTTPレスポンスを取得する
      */
     suspend fun getResponseFromUrl(urlString: String): HttpResponse {
@@ -59,6 +53,12 @@ class RepositorySearchApi(
         )
         return HttpRequestExecutor.getResponse(clientProvider.getClient(), requestMessage)
     }
+
+    /**
+     * 渡された[httpResponse]をから次のページのURLを取得する。次のページがなければnullを返す。
+     */
+    fun getNextUrl(httpResponse: HttpResponse): String? =
+        getPageUrl(httpResponse, LinkRelValue.Next)
 
     /**
      * [httpResponse]のLinkヘッダーに[relValue]に対応するページのURLが含まれるならばそれを返し、含まれないならnullを返す
