@@ -26,4 +26,14 @@ object GitHubStatusCodes {
      * [参考](https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes)
      */
     val SERVER_RESPONSE_ERROR = setOf(HttpStatusCode.fromValue(503))
+
+    /**
+     * 検索に成功した時のステータスコード 200 [参考](https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes)
+     */
+    val SUCCESS = setOf(HttpStatusCode.fromValue(200))
+
+    /**
+     * タイムアウトを表す
+     */
+    val TIME_OUT: Set<HttpStatusCode> = emptySet()
 }
