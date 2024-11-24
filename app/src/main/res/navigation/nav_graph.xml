@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_two">
         <argument
             android:name="repositoryInfo"
-            app:argType="jp.co.yumemi.android.code_check.data.RepositoryInfo" />
+            app:argType="jp.co.yumemi.android.code_check.data.structure.github.RepositoryInfo" />
     </fragment>
 
 </navigation>
