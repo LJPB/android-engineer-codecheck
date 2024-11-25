@@ -9,6 +9,8 @@ import io.ktor.http.URLProtocol
 import jp.co.yumemi.android.code_check.data.http.RequestMessageBuilder
 import jp.co.yumemi.android.code_check.data.http.github.GitHubHttpClientProvider
 import jp.co.yumemi.android.code_check.data.http.github.RepositorySearchApi
+import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.ui.screen.repository_detail.RepositoryDetailViewModel
 import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchViewModel
 
 object ViewModelProvider {
@@ -30,6 +32,12 @@ object ViewModelProvider {
                     )
                 )
             )
+        }
+    }
+
+    fun repositoryDetail(repositoryDetail: RepositoryDetail) = viewModelFactory {
+        initializer {
+            RepositoryDetailViewModel(repositoryDetail = repositoryDetail)
         }
     }
 }

@@ -1,6 +1,8 @@
 package jp.co.yumemi.android.code_check.data.structure.github
 
+import android.os.Parcelable
 import io.ktor.http.HttpStatusCode
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -21,6 +23,7 @@ data class RepositorySearchResult(
 /**
  * 個々のリポジトリを表すデータクラス
  */
+@Parcelize
 @Serializable
 data class RepositoryDetail(
     @SerialName("full_name")
@@ -43,13 +46,14 @@ data class RepositoryDetail(
 
     @SerialName("open_issues_count")
     val openIssuesCount: Long,
-)
+) : Parcelable
 
 /**
  * リポジトリのownerを表すデータクラス
  */
+@Parcelize
 @Serializable
 data class RepositoryOwner(
     @SerialName("avatar_url")
     val avatarUrl: String
-)
+) : Parcelable
