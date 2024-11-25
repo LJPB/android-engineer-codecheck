@@ -8,7 +8,6 @@ import androidx.compose.ui.platform.LocalContext
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.data.http.NetworkState
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.ui.RepositorySearchViewModel
 import java.util.Date
 
 @Composable

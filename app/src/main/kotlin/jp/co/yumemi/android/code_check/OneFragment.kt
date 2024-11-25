@@ -4,25 +4,18 @@
 package jp.co.yumemi.android.code_check
 
 import android.os.Bundle
-import android.view.Surface
 import android.view.View
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
-import jp.co.yumemi.android.code_check.data.http.NetworkState
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryInfo
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
-import jp.co.yumemi.android.code_check.ui.RepositorySearchViewModel
+import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchViewModel
 import jp.co.yumemi.android.code_check.ui.ViewModelProvider
 import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchScreen
-import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchScreenContent
-import java.util.Date
 
 class OneFragment : Fragment(R.layout.fragment_one) {
 
