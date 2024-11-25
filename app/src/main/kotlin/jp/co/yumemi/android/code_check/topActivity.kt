@@ -3,12 +3,24 @@
  */
 package jp.co.yumemi.android.code_check
 
-import androidx.appcompat.app.AppCompatActivity
-import java.util.Date
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.MaterialTheme
+import jp.co.yumemi.android.code_check.ui.GitHubRepositorySearchApp
 
-class TopActivity : AppCompatActivity(R.layout.activity_top) {
+class TopActivity : ComponentActivity() {
 
-    companion object {
-        lateinit var lastSearchDate: Date
+    // TODO: RepositorySearchScreenで検索したDate()をRepositoryDetailScreenでLog.d("検索した日時", ...)の形式でLogcatに表示 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MaterialTheme {
+                GitHubRepositorySearchApp()
+            }
+        }
     }
 }
