@@ -41,6 +41,16 @@ class RepositorySearchViewModel(
     }
 
     /**
+     * 検索ワードの変更
+     */
+    fun changeSearchWord(query: String) = _searchWord.update { query }
+
+    /**
+     * 検索ワードのクリア
+     */
+    fun clearSearchWord() = _searchWord.update { "" }
+
+    /**
      * HTTPリクエストと対応する例外処理を行い、検索結果([RepositorySearchResult])を返す
      */
     private suspend fun runWithExceptionHandling(httpRequest: suspend () -> HttpResponse): RepositorySearchResult =
