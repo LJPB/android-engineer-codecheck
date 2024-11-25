@@ -1,6 +1,5 @@
 package jp.co.yumemi.android.code_check.data.http
 
-import android.util.Patterns
 import androidx.core.util.PatternsCompat
 
 object LinkHeaderParser {

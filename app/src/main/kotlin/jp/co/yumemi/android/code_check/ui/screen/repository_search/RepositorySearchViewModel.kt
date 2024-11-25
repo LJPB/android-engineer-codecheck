@@ -7,8 +7,8 @@ import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.statement.HttpResponse
 import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes
-import jp.co.yumemi.android.code_check.data.http.github.exception.RateLimitException
 import jp.co.yumemi.android.code_check.data.http.github.RepositorySearchApi
+import jp.co.yumemi.android.code_check.data.http.github.exception.RateLimitException
 import jp.co.yumemi.android.code_check.data.http.github.exception.ValidationFailedException
 import jp.co.yumemi.android.code_check.data.structure.github.RateLimitData
 import jp.co.yumemi.android.code_check.data.structure.github.RepositorySearchResult
