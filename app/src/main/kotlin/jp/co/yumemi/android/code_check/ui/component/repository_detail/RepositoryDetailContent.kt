@@ -119,7 +119,7 @@ private fun RepositoryInfoContent(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
                         .padding(top = 8.dp),
-                    text = language,
+                    text = stringResource(R.string.written_language, language),
                     fontSize = 14.sp,
                     textAlign = if (isCompactScreen) TextAlign.Start else TextAlign.Center
                 )
