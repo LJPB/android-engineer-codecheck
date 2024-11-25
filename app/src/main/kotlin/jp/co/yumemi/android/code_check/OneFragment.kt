@@ -45,17 +45,8 @@ class OneFragment : Fragment(R.layout.fragment_one) {
     }
 
     private fun gotoRepositoryFragment(repositoryDetail: RepositoryDetail) {
-        val repositoryInfo = RepositoryInfo(
-            name = repositoryDetail.fullName,
-            ownerIconUrl = repositoryDetail.owner.avatarUrl,
-            language = repositoryDetail.language ?: "",
-            stargazersCount = repositoryDetail.stargazersCount,
-            watchersCount = repositoryDetail.watchersCount,
-            forksCount = repositoryDetail.forksCount,
-            openIssuesCount = repositoryDetail.openIssuesCount
-        )
         val action = OneFragmentDirections
-            .actionRepositoriesFragmentToRepositoryFragment(repositoryInfo = repositoryInfo)
+            .actionRepositoriesFragmentToRepositoryFragment(repositoryDetail = repositoryDetail)
         findNavController().navigate(action)
     }
 }

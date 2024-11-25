@@ -6,11 +6,13 @@ package jp.co.yumemi.android.code_check
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import coil.load
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentTwoBinding
+import jp.co.yumemi.android.code_check.ui.component.repository_detail.RepositoryDetailContent
 
 class TwoFragment : Fragment(R.layout.fragment_two) {
 
@@ -21,20 +23,16 @@ class TwoFragment : Fragment(R.layout.fragment_two) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         Log.d("検索した日時", lastSearchDate.toString())
-
         _binding = FragmentTwoBinding.bind(view)
-
-        val repositoryInfo = args.repositoryInfo
-
-        binding.ownerIconView.load(repositoryInfo.ownerIconUrl)
-        binding.nameView.text = repositoryInfo.name
-        binding.languageView.text = getString(R.string.written_language, repositoryInfo.language)
-        binding.starsView.text = "${repositoryInfo.stargazersCount} stars"
-        binding.watchersView.text = "${repositoryInfo.watchersCount} watchers"
-        binding.forksView.text = "${repositoryInfo.forksCount} forks"
-        binding.openIssuesView.text = "${repositoryInfo.openIssuesCount} open issues"
+        val repositoryDetail = args.repositoryDetail
+        binding.repositoryDetailScreen.setContent {
+            MaterialTheme {
+                Surface {
+                    RepositoryDetailContent(repositoryDetail = repositoryDetail)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
