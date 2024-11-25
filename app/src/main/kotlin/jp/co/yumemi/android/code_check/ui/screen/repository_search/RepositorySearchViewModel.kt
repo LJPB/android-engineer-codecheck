@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui
+package jp.co.yumemi.android.code_check.ui.screen.repository_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -39,6 +39,16 @@ class RepositorySearchViewModel(
         _searchWord.update { word }
         _repositorySearchResult.update { result }
     }
+
+    /**
+     * 検索ワードの変更
+     */
+    fun changeSearchWord(query: String) = _searchWord.update { query }
+
+    /**
+     * 検索ワードのクリア
+     */
+    fun clearSearchWord() = _searchWord.update { "" }
 
     /**
      * HTTPリクエストと対応する例外処理を行い、検索結果([RepositorySearchResult])を返す

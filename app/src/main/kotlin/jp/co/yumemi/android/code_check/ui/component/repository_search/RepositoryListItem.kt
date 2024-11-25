@@ -12,27 +12,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryItem
+import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
 
 /**
  * リポジトリーの検索結果をリスト([RepositoryList])で表示する際の各々のアイテム(リポジトリー)
- * @param repositoryItem 対象となるリポジトリー
+ * @param repositoryDetail 対象となるリポジトリー
  */
 @Composable
 fun RepositoryListItem(
     modifier: Modifier = Modifier,
-    repositoryItem: RepositoryItem,
-    itemOnClick: (RepositoryItem) -> Unit = {}
+    repositoryDetail: RepositoryDetail,
+    itemOnClick: (RepositoryDetail) -> Unit = {}
 ) {
-    Box(modifier = modifier.clickable { itemOnClick(repositoryItem) }) {
+    Box(modifier = modifier.clickable { itemOnClick(repositoryDetail) }) {
         Text(
             modifier = Modifier
                 .padding(horizontal = 16.dp, vertical = 8.dp)
                 .fillMaxWidth()
                 .wrapContentHeight(),
             fontSize = 12.sp,
-            text = repositoryItem.fullName
+            text = repositoryDetail.fullName
         )
     }
 }
@@ -42,7 +42,7 @@ fun RepositoryListItem(
 private fun RepositoryListItemPreview() {
     RepositoryListItem(
         modifier = Modifier,
-        repositoryItem = RepositoryItem(
+        repositoryDetail = RepositoryDetail(
             fullName = "fullName",
             owner = RepositoryOwner(avatarUrl = "https://example.com"),
             language = "language",

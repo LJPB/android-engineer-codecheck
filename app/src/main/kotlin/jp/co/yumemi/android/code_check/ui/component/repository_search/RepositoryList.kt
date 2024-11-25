@@ -7,7 +7,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryItem
+import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
 
 /**
@@ -16,16 +16,16 @@ import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
 @Composable
 fun RepositoryList(
     modifier: Modifier = Modifier,
-    repositoryItemList: List<RepositoryItem>,
-    itemOnClick: (RepositoryItem) -> Unit = {}
+    repositoryDetailList: List<RepositoryDetail>,
+    itemOnClick: (RepositoryDetail) -> Unit = {}
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
-        itemsIndexed(repositoryItemList) { index, item ->
+        itemsIndexed(repositoryDetailList) { index, item ->
             RepositoryListItem(
-                repositoryItem = item,
+                repositoryDetail = item,
                 itemOnClick = itemOnClick
             )
-            if (repositoryItemList.size - 1 > index) {
+            if (repositoryDetailList.size - 1 > index) {
                 HorizontalDivider()
             }
         }
@@ -35,7 +35,7 @@ fun RepositoryList(
 @Preview(showBackground = true)
 @Composable
 private fun RepositoryListPreview() {
-    val repositoryItem = RepositoryItem(
+    val repositoryDetail = RepositoryDetail(
         fullName = "fullName",
         owner = RepositoryOwner(avatarUrl = "https://example.com"),
         language = "language",
@@ -46,11 +46,11 @@ private fun RepositoryListPreview() {
     )
     RepositoryList(
         modifier = Modifier,
-        repositoryItemList = listOf(
-            repositoryItem,
-            repositoryItem,
-            repositoryItem,
-            repositoryItem,
+        repositoryDetailList = listOf(
+            repositoryDetail,
+            repositoryDetail,
+            repositoryDetail,
+            repositoryDetail,
         )
     )
 }
