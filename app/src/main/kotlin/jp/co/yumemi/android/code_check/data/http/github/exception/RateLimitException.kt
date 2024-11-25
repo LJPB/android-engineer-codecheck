@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.http.github
+package jp.co.yumemi.android.code_check.data.http.github.exception
 
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.HttpResponse

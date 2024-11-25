@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.screen.repository_search
+package jp.co.yumemi.android.code_check.ui.component.repository_search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,7 +15,6 @@ import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.data.structure.github.RepositorySearchResult
 import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
-import jp.co.yumemi.android.code_check.ui.component.repository_search.RepositoryList
 
 /**
  * 検索画面に表示する内容

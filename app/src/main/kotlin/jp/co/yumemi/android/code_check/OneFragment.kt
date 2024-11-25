@@ -12,9 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
-import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchViewModel
 import jp.co.yumemi.android.code_check.ui.ViewModelProvider
 import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchScreen
+import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchViewModel
 
 class OneFragment : Fragment(R.layout.fragment_one) {
 
