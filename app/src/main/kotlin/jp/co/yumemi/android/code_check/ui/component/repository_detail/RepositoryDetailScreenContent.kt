@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.screen.repository_detail
+package jp.co.yumemi.android.code_check.ui.component.repository_detail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -6,8 +6,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.window.core.layout.WindowWidthSizeClass
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
-import jp.co.yumemi.android.code_check.ui.component.repository_detail.RepositoryDetailCompactContent
-import jp.co.yumemi.android.code_check.ui.component.repository_detail.RepositoryDetailContent
 
 /**
  * リポジトリの詳細画面([RepositoryDetailScreen])に実際に表示する内容
