@@ -36,4 +36,9 @@ class TwoFragment : Fragment(R.layout.fragment_two) {
         binding.forksView.text = "${repositoryInfo.forksCount} forks"
         binding.openIssuesView.text = "${repositoryInfo.openIssuesCount} open issues"
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
