@@ -21,9 +21,12 @@ class OneFragment : Fragment(R.layout.fragment_one) {
 
     private val repositorySearchViewModel: RepositorySearchViewModel by viewModels { ViewModelProvider.repositorySearch() }
 
+    private var _binding: FragmentOneBinding? = null
+    private val binding get() = _binding!!
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentOneBinding.bind(view)
+        _binding = FragmentOneBinding.bind(view)
         binding.repositorySearchScreen.setContent {
             MaterialTheme {
                 Surface {
@@ -34,6 +37,11 @@ class OneFragment : Fragment(R.layout.fragment_one) {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun gotoRepositoryFragment(repositoryDetail: RepositoryDetail) {
