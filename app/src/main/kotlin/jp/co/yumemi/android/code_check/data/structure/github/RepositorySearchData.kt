@@ -12,7 +12,7 @@ import kotlinx.serialization.Transient
 @Serializable
 data class RepositorySearchResult(
     @SerialName("items")
-    val repositories: List<RepositoryItem>,
+    val repositories: List<RepositoryDetail>,
 
     @Transient
     var status: Set<HttpStatusCode> = emptySet()
@@ -22,7 +22,7 @@ data class RepositorySearchResult(
  * 個々のリポジトリを表すデータクラス
  */
 @Serializable
-data class RepositoryItem(
+data class RepositoryDetail(
     @SerialName("full_name")
     val fullName: String,
 
