@@ -14,6 +14,8 @@ import jp.co.yumemi.android.code_check.data.http.HttpClientProvider
 import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes.RATE_LIMIT_STATUS_CODES
 import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes.SERVER_RESPONSE_ERROR
 import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes.VALIDATION_FAILED
+import jp.co.yumemi.android.code_check.data.http.github.exception.RateLimitException
+import jp.co.yumemi.android.code_check.data.http.github.exception.ValidationFailedException
 import kotlinx.serialization.json.Json
 
 object GitHubHttpClientProvider : HttpClientProvider {
