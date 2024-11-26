@@ -12,7 +12,6 @@ import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.headers
-import jp.co.yumemi.android.code_check.data.repository.http.common.HttpClientProvider
 import jp.co.yumemi.android.code_check.data.repository.http.common.executor.common.HttpRequestExecutor
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpMethod
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
@@ -20,6 +19,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.commo
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.UrlProtocol
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.HttpClientProvider
 
 /**
  * Ktor ClientでHTTP通信のリクエストを行うクラス

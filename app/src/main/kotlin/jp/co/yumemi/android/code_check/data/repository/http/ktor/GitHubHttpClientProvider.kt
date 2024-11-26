@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.repository.http.github
+package jp.co.yumemi.android.code_check.data.repository.http.ktor
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
@@ -10,7 +10,6 @@ import io.ktor.client.plugins.UserAgent
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.statement.bodyAsText
 import io.ktor.serialization.kotlinx.json.json
-import jp.co.yumemi.android.code_check.data.repository.http.common.HttpClientProvider
 import jp.co.yumemi.android.code_check.data.repository.http.github.GitHubStatusCodes.RATE_LIMIT_STATUS_CODES
 import jp.co.yumemi.android.code_check.data.repository.http.github.GitHubStatusCodes.SERVER_RESPONSE_ERROR
 import jp.co.yumemi.android.code_check.data.repository.http.github.GitHubStatusCodes.VALIDATION_FAILED
