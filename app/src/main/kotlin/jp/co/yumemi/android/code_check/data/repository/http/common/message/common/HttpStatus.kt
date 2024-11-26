@@ -2,6 +2,11 @@ package jp.co.yumemi.android.code_check.data.repository.http.common.message.comm
 
 object HttpStatus {
     /**
+     * 初期値
+     */
+    const val INITIAL = -3
+
+    /**
      * 不明なエラー
      */
     const val UNKNOWN = -2
