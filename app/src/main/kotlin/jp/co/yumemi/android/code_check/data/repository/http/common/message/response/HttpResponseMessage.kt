@@ -8,6 +8,6 @@ package jp.co.yumemi.android.code_check.data.repository.http.common.message.resp
  */
 data class HttpResponseMessage<T>(
     val status: Int,
-    val headers: List<Map<String, String>>,
+    val headers: Map<String, List<String>>,
     val body: T
 )
