@@ -1,23 +1,17 @@
 package jp.co.yumemi.android.code_check.data.model.http.github
 
 import android.os.Parcelable
-import io.ktor.http.HttpStatusCode
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 /**
  * リポジトリの検索結果を格納するデータクラス
- * @param status 検索結果のステータス GitHubStatusCodesのプロパティを受け取る
  */
 @Serializable
 data class RepositorySearchResult(
     @SerialName("items")
-    val repositories: List<RepositoryDetail> = listOf(),
-
-    @Transient
-    var status: Set<HttpStatusCode> = emptySet()
+    val repositories: List<RepositoryDetail> = listOf()
 )
 
 /**
