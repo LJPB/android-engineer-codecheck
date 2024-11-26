@@ -31,13 +31,16 @@ class GitHubRepositorySearchApi(private val httpRequestExecutor: HttpRequestExec
         messageBuilder.clear()
 
         // 検索結果をJsonからRepositorySearchResultにパース
-        val repositorySearchResult = if (response.body.isNotEmpty()) {
-            val json = Json { ignoreUnknownKeys = true }
-            json.decodeFromString<RepositorySearchResult>(response.body)
-        } else {
-            // レスポンスボディを取得できなければ空のRepositorySearchResultを検索結果として設定する
-            RepositorySearchResult(repositories = listOf())
-        }
+        val repositorySearchResult =
+            if (response.body.isNotEmpty() && response.status == 200) { // ハードコードは要修正！
+                val json = Json {
+                    ignoreUnknownKeys = true
+                }
+                json.decodeFromString<RepositorySearchResult>(response.body)
+            } else {
+                // レスポンスボディを取得できなければ空のRepositorySearchResultを検索結果として設定する
+                RepositorySearchResult(repositories = listOf())
+            }
         return HttpResponseMessage(
             status = response.status,
             body = repositorySearchResult,

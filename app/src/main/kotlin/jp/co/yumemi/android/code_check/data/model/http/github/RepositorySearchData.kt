@@ -14,7 +14,7 @@ import kotlinx.serialization.Transient
 @Serializable
 data class RepositorySearchResult(
     @SerialName("items")
-    val repositories: List<RepositoryDetail>,
+    val repositories: List<RepositoryDetail> = listOf(),
 
     @Transient
     var status: Set<HttpStatusCode> = emptySet()
