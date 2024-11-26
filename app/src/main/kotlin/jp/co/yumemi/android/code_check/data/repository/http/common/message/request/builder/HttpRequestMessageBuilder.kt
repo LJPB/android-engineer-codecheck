@@ -6,6 +6,8 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.reque
  * HTTPリクエストメッセージ([HttpRequestMessage])を作るビルダー
  */
 interface HttpRequestMessageBuilder {
+    val defaultMessage: HttpRequestMessage
+
     fun build(): HttpRequestMessage
 
     fun clear()
