@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.repository.http.common.executor.ktor
+package jp.co.yumemi.android.code_check.data.repository.http.ktor.executor
 
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.ResponseException
@@ -12,14 +12,14 @@ import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.headers
-import jp.co.yumemi.android.code_check.data.repository.http.common.executor.common.HttpRequestExecutor
+import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpMethod
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.Url
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.UrlProtocol
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
-import jp.co.yumemi.android.code_check.data.repository.http.ktor.HttpClientProvider
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.HttpClientProvider
 
 /**
  * Ktor ClientでHTTP通信のリクエストを行うクラス

@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.repository.http.common.executor.common
+package jp.co.yumemi.android.code_check.data.repository.http.common.executor
 
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage

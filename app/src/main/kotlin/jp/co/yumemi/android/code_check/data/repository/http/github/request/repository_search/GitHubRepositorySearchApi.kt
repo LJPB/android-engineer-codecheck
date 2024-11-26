@@ -1,7 +1,7 @@
 package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search
 
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
-import jp.co.yumemi.android.code_check.data.repository.http.common.executor.common.HttpRequestExecutor
+import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
 import kotlinx.serialization.json.Json

@@ -2,9 +2,9 @@ package jp.co.yumemi.android.code_check.data.repository.http.github.request
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
-import jp.co.yumemi.android.code_check.data.repository.http.common.executor.ktor.KtorExecutor
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search.GitHubRepositorySearchApi
-import jp.co.yumemi.android.code_check.data.repository.http.ktor.HttpClientProvider
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.HttpClientProvider
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.executor.KtorExecutor
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

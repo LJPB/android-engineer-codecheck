@@ -1,7 +1,8 @@
 package jp.co.yumemi.android.code_check.data.repository.http.common.executor.ktor
 
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
-import jp.co.yumemi.android.code_check.data.repository.http.ktor.GitHubHttpClientProvider
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.GitHubHttpClientProvider
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.executor.KtorExecutor
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
