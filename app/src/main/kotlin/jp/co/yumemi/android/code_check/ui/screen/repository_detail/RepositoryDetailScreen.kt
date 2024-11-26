@@ -11,7 +11,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.window.core.layout.WindowWidthSizeClass
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.ui.component.repository_detail.RepositoryDetailScreenContent
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString

@@ -8,8 +8,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import jp.co.yumemi.android.code_check.data.http.NetworkState
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.util.NetworkState
 import jp.co.yumemi.android.code_check.ui.ViewModelProvider
 import jp.co.yumemi.android.code_check.ui.component.repository_search.RepositorySearchScreenContent
 import kotlinx.serialization.Serializable

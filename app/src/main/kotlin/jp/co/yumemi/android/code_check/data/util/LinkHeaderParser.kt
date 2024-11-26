@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.http
+package jp.co.yumemi.android.code_check.data.util
 
 import androidx.core.util.PatternsCompat
 

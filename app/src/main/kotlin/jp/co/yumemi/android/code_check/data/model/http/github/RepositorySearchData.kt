@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.structure.github
+package jp.co.yumemi.android.code_check.data.model.http.github
 
 import android.os.Parcelable
 import io.ktor.http.HttpStatusCode

@@ -6,9 +6,9 @@ import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.http.URLProtocol
-import jp.co.yumemi.android.code_check.data.http.RequestMessageBuilder
-import jp.co.yumemi.android.code_check.data.http.github.GitHubHttpClientProvider
-import jp.co.yumemi.android.code_check.data.http.github.RepositorySearchApi
+import jp.co.yumemi.android.code_check.data.repository.http.common.RequestMessageBuilder
+import jp.co.yumemi.android.code_check.data.repository.http.github.GitHubHttpClientProvider
+import jp.co.yumemi.android.code_check.data.repository.http.github.RepositorySearchApi
 import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchViewModel
 
 object ViewModelProvider {

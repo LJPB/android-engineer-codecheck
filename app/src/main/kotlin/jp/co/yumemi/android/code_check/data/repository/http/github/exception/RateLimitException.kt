@@ -1,8 +1,8 @@
-package jp.co.yumemi.android.code_check.data.http.github.exception
+package jp.co.yumemi.android.code_check.data.repository.http.github.exception
 
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.HttpResponse
-import jp.co.yumemi.android.code_check.data.structure.github.RateLimitData
+import jp.co.yumemi.android.code_check.data.model.http.github.RateLimitData
 
 /**
  * GitHubのレート制限に引っかかった時の例外

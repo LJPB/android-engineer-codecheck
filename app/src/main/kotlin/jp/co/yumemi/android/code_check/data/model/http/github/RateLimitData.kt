@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.structure.github
+package jp.co.yumemi.android.code_check.data.model.http.github
 
 /**
  * レート制限に関する情報を表すデータクラス

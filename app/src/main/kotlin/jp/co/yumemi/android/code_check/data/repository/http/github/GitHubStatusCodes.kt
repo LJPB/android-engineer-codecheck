@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.http.github
+package jp.co.yumemi.android.code_check.data.repository.http.github
 
 import io.ktor.http.HttpStatusCode
 

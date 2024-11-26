@@ -1,11 +1,11 @@
-package jp.co.yumemi.android.code_check.data.http
+package jp.co.yumemi.android.code_check.data.repository.http.common
 
 import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpMethod
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
-import jp.co.yumemi.android.code_check.data.structure.http.RequestMessage
-import jp.co.yumemi.android.code_check.data.structure.http.UrlParameter
+import jp.co.yumemi.android.code_check.data.model.http.common.RequestMessage
+import jp.co.yumemi.android.code_check.data.model.http.common.UrlParameter
 
 /**
  * [RequestMessage]を作るためのクラス

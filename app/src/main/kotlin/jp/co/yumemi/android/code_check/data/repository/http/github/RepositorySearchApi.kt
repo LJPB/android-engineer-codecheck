@@ -1,13 +1,13 @@
-package jp.co.yumemi.android.code_check.data.http.github
+package jp.co.yumemi.android.code_check.data.repository.http.github
 
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.URLBuilder
-import jp.co.yumemi.android.code_check.data.http.HttpClientProvider
-import jp.co.yumemi.android.code_check.data.http.HttpRequestExecutor
-import jp.co.yumemi.android.code_check.data.http.LinkHeaderParser
-import jp.co.yumemi.android.code_check.data.http.RequestMessageBuilder
-import jp.co.yumemi.android.code_check.data.structure.http.RequestMessage
-import jp.co.yumemi.android.code_check.data.structure.http.UrlParameter
+import jp.co.yumemi.android.code_check.data.model.http.common.RequestMessage
+import jp.co.yumemi.android.code_check.data.model.http.common.UrlParameter
+import jp.co.yumemi.android.code_check.data.repository.http.common.HttpClientProvider
+import jp.co.yumemi.android.code_check.data.repository.http.common.HttpRequestExecutor
+import jp.co.yumemi.android.code_check.data.repository.http.common.RequestMessageBuilder
+import jp.co.yumemi.android.code_check.data.util.LinkHeaderParser
 
 /**
  * GitHubのリポジトリを検索するためのクラス

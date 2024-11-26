@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.structure.http
+package jp.co.yumemi.android.code_check.data.model.http.common
 
 import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpMethod

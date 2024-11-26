@@ -7,8 +7,8 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryOwner
 
 /**
  * 検索結果として表示するリポジトリのリスト

@@ -1,12 +1,10 @@
-package jp.co.yumemi.android.code_check.data.github.search
+package jp.co.yumemi.android.code_check.data.repository.http.github
 
 import io.ktor.http.HeadersBuilder
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLProtocol
-import jp.co.yumemi.android.code_check.data.http.github.GitHubHttpClientProvider
-import jp.co.yumemi.android.code_check.data.http.RequestMessageBuilder
-import jp.co.yumemi.android.code_check.data.http.github.RepositorySearchApi
+import jp.co.yumemi.android.code_check.data.repository.http.common.RequestMessageBuilder
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -40,13 +38,14 @@ class RepositorySearchApiTest {
         val response = repositorySearchApi.searchWithWord("kotlin")
         assert(response.status == HttpStatusCode.OK)
     }
-    
+
     /**
      * URLからリソースをちゃんと取得できているかのテスト
      */
     @Test
     fun getResponseFromUrlTest(): Unit = runBlocking {
-        val response = repositorySearchApi.getResponseFromUrl("https://api.github.com/search/repositories?q=kotlin")
+        val response =
+            repositorySearchApi.getResponseFromUrl("https://api.github.com/search/repositories?q=kotlin")
         assert(response.status == HttpStatusCode.OK)
     }
 }

@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui
+package jp.co.yumemi.android.code_check.ui.screen
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold

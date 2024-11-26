@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.http
+package jp.co.yumemi.android.code_check.data.util
 
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNull
