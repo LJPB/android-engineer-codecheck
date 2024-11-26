@@ -7,9 +7,4 @@ enum class HttpMethod {
     Get,
     Post,
     Put,
-    Head,
-    Delete,
-    Connect,
-    Options,
-    Trace
 }
