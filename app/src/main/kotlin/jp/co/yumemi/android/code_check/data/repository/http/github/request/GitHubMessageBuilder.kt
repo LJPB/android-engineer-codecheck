@@ -5,6 +5,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.commo
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.Url
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.UrlProtocol
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
+import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.builder.QueryMessageBuilder
 
 /**
  * GitHub REST APIに関するHTTPリクエストメッセージを作るビルダーを集めたオブジェクト

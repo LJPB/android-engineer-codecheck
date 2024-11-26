@@ -1,8 +1,6 @@
-package jp.co.yumemi.android.code_check.data.repository.http.github.request
+package jp.co.yumemi.android.code_check.data.repository.http.common.message.request.builder
 
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
-import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.builder.HttpRequestMessageBuilder
-import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.builder.ParametersBuilder
 
 /**
  * クエリパラメータの設定ができる[HttpRequestMessage]のビルダークラス
