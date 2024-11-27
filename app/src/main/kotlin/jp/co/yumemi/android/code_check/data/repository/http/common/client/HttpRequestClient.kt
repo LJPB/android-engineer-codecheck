@@ -1,19 +1,11 @@
 package jp.co.yumemi.android.code_check.data.repository.http.common.client
 
-import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
-import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
+import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
 
 /**
  * HTTP通信のリクエストを行う
  */
-interface HttpRequestClient {
-    /**
-     * 渡された[requestMessage]でHTTPリクエストを行い、その結果を[HttpResponseMessage]で返す
-     * @param requestMessage 実行したいリクエストメッセージ
-     * @return レスポンスの結果。レスポンスボディはStringで格納される。
-     */
-    suspend fun request(requestMessage: HttpRequestMessage): HttpResponseMessage<String>
-
+interface HttpRequestClient : HttpRequestExecutor {
     /**
      * HTTPリクエストを行うためのセットアップ
      */
