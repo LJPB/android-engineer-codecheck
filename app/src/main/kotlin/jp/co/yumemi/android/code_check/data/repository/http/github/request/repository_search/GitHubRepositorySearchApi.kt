@@ -6,6 +6,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.HttpRequest
 import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
+import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitParser
 import jp.co.yumemi.android.code_check.data.util.LinkHeaderParser
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
@@ -48,6 +49,7 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
             status = response.status,
             statusMessage = response.statusMessage,
             body = RepositorySearchResponse(
+                rateLimitData = RateLimitParser.getRateLimitData(response.headers),
                 hasNextPage = hasNextPage(response.headers["link"]?.joinToString() ?: ""),
                 responseBody = repositorySearchResult
             ),
