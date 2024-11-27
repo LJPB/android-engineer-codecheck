@@ -12,7 +12,7 @@ import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.headers
-import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpClient
+import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpRequestClient
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpMethod
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.Url
@@ -26,7 +26,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.respo
  * このクラスではcloseに触れていないことに注意
  * @param clientProvider HttpClientのProvider
  */
-class KtorClient(private val clientProvider: HttpClientProvider) : HttpClient {
+class KtorRequestClient(private val clientProvider: HttpClientProvider) : HttpRequestClient {
     /**
      * HTTPリクエストを実行する
      * @param requestMessage リクエストに関するリクエストメッセージ

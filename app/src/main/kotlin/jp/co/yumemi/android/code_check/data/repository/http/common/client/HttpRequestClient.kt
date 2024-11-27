@@ -6,7 +6,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.respo
 /**
  * HTTP通信のリクエストを行う
  */
-interface HttpClient {
+interface HttpRequestClient {
     /**
      * 渡された[requestMessage]でHTTPリクエストを行い、その結果を[HttpResponseMessage]で返す
      * @param requestMessage 実行したいリクエストメッセージ

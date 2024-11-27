@@ -1,7 +1,7 @@
 package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search
 
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
-import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpClient
+import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpRequestClient
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
 import kotlinx.serialization.json.Json
@@ -10,9 +10,9 @@ import javax.inject.Inject
 
 /**
  * GitHub REST APIでリポジトリーを検索するためのAPI
- * @param httpClient HTTPリクエストを実行するためのクラス
+ * @param httpRequestClient HTTPリクエストを実行するためのクラス
  */
-class GitHubRepositorySearchApi @Inject constructor(private val httpClient: HttpClient) :
+class GitHubRepositorySearchApi @Inject constructor(private val httpRequestClient: HttpRequestClient) :
     GitHubRepositorySearchService {
     private val messageBuilder = GitHubMessageBuilder.repositorySearch
 
@@ -25,7 +25,7 @@ class GitHubRepositorySearchApi @Inject constructor(private val httpClient: Http
     override suspend fun search(word: String): HttpResponseMessage<RepositorySearchResult> {
         messageBuilder.appendParameter(RepositorySearchQueryType.SearchWord.KEY to word)
 
-        val response = httpClient.request(messageBuilder.build())
+        val response = httpRequestClient.request(messageBuilder.build())
 
         // 追加したクエリを初期化する
         // クエリの追加はすなわち検索条件の設定であり、それはUI操作によって行われるから、その情報はViewModelで保持する
