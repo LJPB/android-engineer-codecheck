@@ -90,7 +90,8 @@ fun RepositorySearchScreenContent(
         )
         when (searchResponse.status) {
             // REST APIで返されるステータスコード (https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes)
-            HttpStatus.SUCCESS -> RepositoryList(
+            HttpStatus.SUCCESS -> SearchResultScreen(
+                searchWord = searchResponse.body.searchWord,
                 repositoryDetailList = searchResponse.body.responseBody.repositories,
                 itemOnClick = repositoryOnClick
             )

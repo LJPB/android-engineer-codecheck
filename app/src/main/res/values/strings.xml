@@ -5,6 +5,9 @@
 
     <string name="networkError">インターネットに接続されていません</string>
 
+    <string name="searchResultOf">%s の検索結果</string>
+    <string name="searchResultEmpty">一致するリポジトリが見つかりませんでした</string>
+
     <string name="stargazersCount">%d stars</string>
     <string name="watchersCount">%d watchers</string>
     <string name="forksCount">%d forks</string>
