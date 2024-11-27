@@ -30,10 +30,11 @@ fun GitHubRepositorySearchApp(
     val navController = rememberNavController()
 
     val context = LocalContext.current
+    val connectivityManager = getSystemService(context, ConnectivityManager::class.java)
     // ネットの接続状況
-    var networkIsActive by remember { mutableStateOf(true) }
+    var networkIsActive by remember { mutableStateOf(connectivityManager?.activeNetwork != null) }
     // 現在のネットの接続状況に関するコールバック
-    getSystemService(context, ConnectivityManager::class.java)?.registerDefaultNetworkCallback(
+    connectivityManager?.registerDefaultNetworkCallback(
         object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
                 networkIsActive = true
