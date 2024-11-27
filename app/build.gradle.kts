@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
+    id("com.google.dagger.hilt.android")
     alias(libs.plugins.compose.compiler)
 }
 
@@ -42,6 +43,10 @@ android {
         viewBinding = true
         compose = true
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -82,6 +87,10 @@ dependencies {
     // ナビゲーション
     implementation(libs.androidx.navigation.compose)
 
+    // hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // 画像読み込みライブラリCoilのCompose用
     implementation("io.coil-kt.coil3:coil-compose:3.0.3")
