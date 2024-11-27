@@ -4,7 +4,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.reque
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 
 /**
- * HTTPリクエスの実行メソッドを持たせる
+ * HTTPリクエストの実行メソッドを持たせる
  */
 interface HttpRequestExecutor {
     suspend fun request(requestMessage: HttpRequestMessage): HttpResponseMessage<String>

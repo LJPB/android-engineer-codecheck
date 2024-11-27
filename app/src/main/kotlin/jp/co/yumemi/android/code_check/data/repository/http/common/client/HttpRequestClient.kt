@@ -3,7 +3,7 @@ package jp.co.yumemi.android.code_check.data.repository.http.common.client
 import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
 
 /**
- * HTTP通信のリクエストを行う
+ * HTTP通信のリクエストを行うクライアントの管理
  */
 interface HttpRequestClient : HttpRequestExecutor {
     /**
