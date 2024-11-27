@@ -66,7 +66,7 @@ class KtorRequestClient : HttpRequestClient {
      * 新しいHttpClientをセットする
      */
     override fun setUp() {
-        close() // 既存のHttpClientがあればcloseする
+        close() // 既存のHttpClientをcloseする
         httpClient = getClient()
     }
 
