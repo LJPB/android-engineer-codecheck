@@ -1,7 +1,11 @@
 package jp.co.yumemi.android.code_check.data.repository.http.ktor.client
 
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.HttpRequestTimeoutException
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.ResponseException
+import io.ktor.client.plugins.UserAgent
 import io.ktor.client.request.request
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
@@ -21,12 +25,12 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.reque
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 
 /**
- * Ktor ClientでHTTP通信のリクエストを行うクラス
- *
- * このクラスではcloseに触れていないことに注意
- * @param clientProvider HttpClientのProvider
+ * KtorのHTTPクライアントを管理する
  */
-class KtorRequestClient(private val clientProvider: HttpClientProvider) : HttpRequestClient {
+class KtorRequestClient : HttpRequestClient {
+    private val timeOutMills = 5000L // 5秒でタイムアウト
+    private var httpClient: HttpClient = getClient()
+
     /**
      * HTTPリクエストを実行する
      * @param requestMessage リクエストに関するリクエストメッセージ
@@ -40,7 +44,7 @@ class KtorRequestClient(private val clientProvider: HttpClientProvider) : HttpRe
 
         // レスポンスと対応するステータスコードの取得
         val (httpResponse, responseStatus) = runWithTryCatch {
-            clientProvider.getClient().request {
+            httpClient.request {
                 method = requestMethod
                 url(requestUrl)
                 headers { requestHeaders.build() }
@@ -57,13 +61,31 @@ class KtorRequestClient(private val clientProvider: HttpClientProvider) : HttpRe
         )
     }
 
+    /**
+     * HTTPクライアントのセットアップ
+     * 新しいHttpClientをセットする
+     */
     override fun setUp() {
-        TODO("Not yet implemented")
+        close() // 既存のHttpClientがあればcloseする
+        httpClient = getClient()
     }
 
+    /**
+     * HTTPクライアントのリソースの解放
+     */
     override fun close() {
-        clientProvider.close()
+        httpClient.close()
     }
+
+    private fun getClient(): HttpClient =
+        HttpClient(Android) {
+            install(HttpTimeout) {
+                requestTimeoutMillis = timeOutMills
+            }
+            install(UserAgent) {
+                agent = "dev@ljpb.me"
+            }
+        }
 
     /**
      * 例外処理と一緒にリクエストを行う

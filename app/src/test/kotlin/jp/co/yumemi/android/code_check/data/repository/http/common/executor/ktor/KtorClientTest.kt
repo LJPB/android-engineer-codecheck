@@ -1,7 +1,6 @@
 package jp.co.yumemi.android.code_check.data.repository.http.common.executor.ktor
 
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
-import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.GitHubHttpClientProvider
 import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.KtorRequestClient
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -18,7 +17,7 @@ class KtorClientTest {
 
     @Before
     fun setUp() {
-        ktorClient = KtorRequestClient(GitHubHttpClientProvider)
+        ktorClient = KtorRequestClient()
     }
 
     /**
