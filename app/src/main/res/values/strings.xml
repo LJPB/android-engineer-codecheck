@@ -11,4 +11,6 @@
     <string name="openIssuesCount">%d open issues</string>
 
     <string name="nowSearch">検索中</string>
+    <string name="timeout">検索に時間がかかりタイムアウトしました</string>
+    <string name="unknown">不明なエラー</string>
 </resources>

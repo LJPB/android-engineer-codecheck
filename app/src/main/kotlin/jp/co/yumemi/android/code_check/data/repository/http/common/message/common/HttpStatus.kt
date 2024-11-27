@@ -22,4 +22,10 @@ object HttpStatus {
     const val LOADING = 0
 
     const val SUCCESS = 200
+
+    const val NOT_MODIFIED = 304
+
+    const val UNPROCESSABLE_ENTITY = 422
+
+    const val SERVER_UNAVAILABLE = 503
 }

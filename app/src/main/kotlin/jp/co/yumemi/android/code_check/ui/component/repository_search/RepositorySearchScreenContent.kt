@@ -81,12 +81,22 @@ fun RepositorySearchScreenContent(
             }
         )
         when (searchResponse.status) {
+            // REST APIで返されるステータスコード (https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes)
             HttpStatus.SUCCESS -> RepositoryList(
                 repositoryDetailList = searchResponse.body.responseBody.repositories,
                 itemOnClick = repositoryOnClick
             )
 
+            HttpStatus.NOT_MODIFIED,
+            HttpStatus.UNPROCESSABLE_ENTITY,
+            HttpStatus.SERVER_UNAVAILABLE -> SearchErrorScreen(
+                statusCode = searchResponse.status,
+                message = searchResponse.statusMessage
+            )
+
             HttpStatus.LOADING -> LoadingScreen(message = stringResource(R.string.nowSearch))
+            HttpStatus.TIMEOUT -> SearchErrorScreen(message = stringResource(R.string.timeout))
+            HttpStatus.UNKNOWN -> SearchErrorScreen(message = stringResource(R.string.unknown))
         }
     }
 }
