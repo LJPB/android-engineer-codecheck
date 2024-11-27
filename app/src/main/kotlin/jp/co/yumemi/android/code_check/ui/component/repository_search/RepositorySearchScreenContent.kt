@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResponse
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
@@ -24,7 +24,7 @@ import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
  * @param onQueryClear [query]のクリアイベント
  * @param onSearch 検索
  * @param repositoryOnClick 検索結果として表示されるリポジトリのクリックイベント
- * @param searchResult 検索結果
+ * @param searchResponse 検索結果
  */
 @Composable
 fun RepositorySearchScreenContent(
@@ -34,7 +34,7 @@ fun RepositorySearchScreenContent(
     onQueryClear: () -> Unit,
     onSearch: (String) -> Unit,
     repositoryOnClick: (RepositoryDetail) -> Unit,
-    searchResult: HttpResponseMessage<RepositorySearchResult>
+    searchResponse: HttpResponseMessage<RepositorySearchResponse>
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -50,10 +50,10 @@ fun RepositorySearchScreenContent(
             onQueryClear = onQueryClear,
             onSearch = onSearch
         )
-        when (searchResult.status) {
+        when (searchResponse.status) {
             // TODO: ハードコード 要修正!
             200 -> RepositoryList(
-                repositoryDetailList = searchResult.body.repositories,
+                repositoryDetailList = searchResponse.body.responseBody.repositories,
                 itemOnClick = repositoryOnClick
             )
         }
@@ -70,11 +70,11 @@ private fun RepositorySearchScreenPreview() {
         onQueryClear = {},
         onSearch = {},
         repositoryOnClick = {},
-        searchResult = HttpResponseMessage(
+        searchResponse = HttpResponseMessage(
             status = HttpStatus.INITIAL,
             statusMessage = "",
             headers = mapOf(),
-            body = RepositorySearchResult(repositories = listOf())
+            body = RepositorySearchResponse()
         )
     )
 }

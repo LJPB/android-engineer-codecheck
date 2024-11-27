@@ -1,5 +1,6 @@
 package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search
 
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResponse
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
 import jp.co.yumemi.android.code_check.data.repository.http.common.HttpRequest
 import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
@@ -22,7 +23,7 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
      * 検索結果(リポジトリー、HTTPレスポンスボディ)を[RepositorySearchResult]にパースして取得する
      * 何からの理由で検索結果を取得できなかった場合、[RepositorySearchResult]の中身は空となり、対応するステータスコードが[HttpResponseMessage]に設定される
      */
-    override suspend fun search(word: String): HttpResponseMessage<RepositorySearchResult> {
+    override suspend fun search(word: String): HttpResponseMessage<RepositorySearchResponse> {
         messageBuilder.appendParameter(RepositorySearchQueryType.SearchWord.KEY to word)
 
         val response = httpRequestExecutor.request(messageBuilder.build())
@@ -45,7 +46,7 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
         return HttpResponseMessage(
             status = response.status,
             statusMessage = response.statusMessage,
-            body = repositorySearchResult,
+            body = RepositorySearchResponse(responseBody = repositorySearchResult),
             headers = response.headers
         )
     }

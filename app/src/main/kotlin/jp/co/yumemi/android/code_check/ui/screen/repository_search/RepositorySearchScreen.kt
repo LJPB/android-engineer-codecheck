@@ -20,7 +20,7 @@ fun RepositorySearchScreen(
     repositoryOnClick: (RepositoryDetail) -> Unit,
 ) {
     val context = LocalContext.current
-    val result by viewModel.repositorySearchResult.collectAsState()
+    val searchResponse by viewModel.repositorySearchResponse.collectAsState()
     val searchWord by viewModel.searchWord.collectAsState()
     RepositorySearchScreenContent(
         modifier = modifier,
@@ -33,7 +33,7 @@ fun RepositorySearchScreen(
             }
         },
         repositoryOnClick = repositoryOnClick,
-        searchResult = result
+        searchResponse = searchResponse
     )
 }
 
