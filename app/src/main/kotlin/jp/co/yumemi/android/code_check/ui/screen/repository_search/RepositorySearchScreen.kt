@@ -5,12 +5,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import jp.co.yumemi.android.code_check.data.http.NetworkState
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.ui.ViewModelProvider
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.util.NetworkState
 import jp.co.yumemi.android.code_check.ui.component.repository_search.RepositorySearchScreenContent
 import kotlinx.serialization.Serializable
 
@@ -44,7 +43,7 @@ object RepositorySearchDestination
 fun NavGraphBuilder.repositorySearchScreen(repositoryOnClick: (RepositoryDetail) -> Unit) {
     composable<RepositorySearchDestination> {
         RepositorySearchScreen(
-            viewModel = viewModel(factory = ViewModelProvider.repositorySearch()),
+            viewModel = hiltViewModel(),
             repositoryOnClick = repositoryOnClick
         )
     }

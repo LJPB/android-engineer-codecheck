@@ -11,9 +11,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.data.http.github.GitHubStatusCodes
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.data.structure.github.RepositorySearchResult
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
+import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
+import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
 
 /**
@@ -33,7 +34,7 @@ fun RepositorySearchScreenContent(
     onQueryClear: () -> Unit,
     onSearch: (String) -> Unit,
     repositoryOnClick: (RepositoryDetail) -> Unit,
-    searchResult: RepositorySearchResult
+    searchResult: HttpResponseMessage<RepositorySearchResult>
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -50,8 +51,9 @@ fun RepositorySearchScreenContent(
             onSearch = onSearch
         )
         when (searchResult.status) {
-            GitHubStatusCodes.SUCCESS -> RepositoryList(
-                repositoryDetailList = searchResult.repositories,
+            // TODO: ハードコード 要修正!
+            200 -> RepositoryList(
+                repositoryDetailList = searchResult.body.repositories,
                 itemOnClick = repositoryOnClick
             )
         }
@@ -68,6 +70,10 @@ private fun RepositorySearchScreenPreview() {
         onQueryClear = {},
         onSearch = {},
         repositoryOnClick = {},
-        searchResult = RepositorySearchResult(listOf())
+        searchResult = HttpResponseMessage(
+            status = HttpStatus.INITIAL,
+            headers = mapOf(),
+            body = RepositorySearchResult(repositories = listOf())
+        )
     )
 }

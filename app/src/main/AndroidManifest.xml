@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidEngineerCodeCheck">
         <activity
-            android:name="jp.co.yumemi.android.code_check.TopActivity"
+            android:name="jp.co.yumemi.android.code_check.ui.screen.TopActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

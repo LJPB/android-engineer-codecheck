@@ -4,6 +4,8 @@ coil = "1.3.2"
 constraintlayout = "2.2.0"
 espressoCore = "3.6.1"
 gradle = "8.7.2"
+hiltAndroid = "2.51.1"
+hiltNavigationCompose = "1.2.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 kotlinxCoroutinesAndroid = "1.9.0"
@@ -22,6 +24,7 @@ material3Adaptive = "1.0.0"
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
 androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleKtx" }
@@ -34,6 +37,8 @@ androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fr
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }

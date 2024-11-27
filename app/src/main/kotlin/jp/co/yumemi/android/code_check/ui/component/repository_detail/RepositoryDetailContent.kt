@@ -21,8 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryOwner
 
 /**
  * WindowWidthSizeClassがCOMPACTな画面でリポジトリの詳細を表示する

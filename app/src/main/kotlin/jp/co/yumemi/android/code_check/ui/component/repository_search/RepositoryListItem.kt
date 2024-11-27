@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.data.structure.github.RepositoryOwner
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryOwner
 
 /**
  * リポジトリーの検索結果をリスト([RepositoryList])で表示する際の各々のアイテム(リポジトリー)
