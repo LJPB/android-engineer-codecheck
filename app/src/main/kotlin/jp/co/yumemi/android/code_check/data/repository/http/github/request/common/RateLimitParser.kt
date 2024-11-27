@@ -8,9 +8,9 @@ object RateLimitParser {
     private const val RESET = "retry-x-ratelimit-reset"
 
     fun getRateLimitData(header: Map<String, List<String>>): RateLimitData {
-        val retryAfter = header[RETRY_AFTER]?.joinToString()?.toInt()
-        val remaining = header[REMAINING]?.joinToString()?.toInt()
-        val reset = header[RESET]?.joinToString()?.toLong()
+        val retryAfter = header[RETRY_AFTER]?.joinToString(separator = "")?.toInt()
+        val remaining = header[REMAINING]?.joinToString(separator = "")?.toInt()
+        val reset = header[RESET]?.joinToString(separator = "")?.toLong()
         return RateLimitData(
             retryAfter = retryAfter,
             remaining = remaining,
