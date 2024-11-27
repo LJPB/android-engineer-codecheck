@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,23 +30,23 @@ fun GitHubRepositorySearchApp(
     val context = LocalContext.current
     val connectivityManager = getSystemService(context, ConnectivityManager::class.java)
     // ネットの接続状況
-    var networkIsActive by remember { mutableStateOf(connectivityManager?.activeNetwork != null) }
+    val networkIsActive = remember { mutableStateOf(connectivityManager?.activeNetwork != null) }
     // 現在のネットの接続状況に関するコールバック
     connectivityManager?.registerDefaultNetworkCallback(
         object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
-                networkIsActive = true
+                networkIsActive.value = true
             }
 
             override fun onLost(network: Network) {
-                networkIsActive = false
+                networkIsActive.value = false
             }
         }
     )
 
     Scaffold { paddingValue ->
         Column(modifier = modifier.padding(paddingValue)) {
-            AnimatedVisibility(!networkIsActive) {
+            AnimatedVisibility(!networkIsActive.value) {
                 // contentはtrueで表示される
                 // networkIsActiveがfalseの時にエラーメッセージを表示したいから!networkIsActiveを渡している
                 NetworkErrorMessage()

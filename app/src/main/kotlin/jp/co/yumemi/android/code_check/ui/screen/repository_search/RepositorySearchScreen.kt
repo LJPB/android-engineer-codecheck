@@ -1,6 +1,7 @@
 package jp.co.yumemi.android.code_check.ui.screen.repository_search
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -14,7 +15,7 @@ import kotlinx.serialization.Serializable
 @Composable
 fun RepositorySearchScreen(
     modifier: Modifier = Modifier,
-    networkIsActive: Boolean,
+    networkIsActive: MutableState<Boolean>,
     viewModel: RepositorySearchViewModel,
     repositoryOnClick: (RepositoryDetail) -> Unit,
 ) {
@@ -36,7 +37,7 @@ fun RepositorySearchScreen(
 object RepositorySearchDestination
 
 fun NavGraphBuilder.repositorySearchScreen(
-    networkIsActive: Boolean,
+    networkIsActive: MutableState<Boolean>,
     repositoryOnClick: (RepositoryDetail) -> Unit
 ) {
     composable<RepositorySearchDestination> {
