@@ -8,11 +8,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.MaterialTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TopActivity : ComponentActivity() {
-
-    // TODO: RepositorySearchScreenで検索したDate()をRepositoryDetailScreenでLog.d("検索した日時", ...)の形式でLogcatに表示 
-
+    // TODO: RepositorySearchScreenで検索したDate()をRepositoryDetailScreenでLog.d("検索した日時", ...)の形式でLogcatに表示
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

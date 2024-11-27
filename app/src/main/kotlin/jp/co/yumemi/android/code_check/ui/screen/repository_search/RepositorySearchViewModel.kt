@@ -2,6 +2,7 @@ package jp.co.yumemi.android.code_check.ui.screen.repository_search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.co.yumemi.android.code_check.data.model.http.github.RateLimitData
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
@@ -11,13 +12,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RepositorySearchViewModel(
+@HiltViewModel
+class RepositorySearchViewModel @Inject constructor(
     private val searchApi: GitHubRepositorySearchService
 ) : ViewModel() {
 
     private var rateLimitData: RateLimitData? = null
-    
+
     private val _repositorySearchResult: MutableStateFlow<HttpResponseMessage<RepositorySearchResult>> =
         MutableStateFlow(
             HttpResponseMessage(

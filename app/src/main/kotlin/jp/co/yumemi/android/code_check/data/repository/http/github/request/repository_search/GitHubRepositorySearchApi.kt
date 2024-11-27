@@ -5,13 +5,14 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.executor.Http
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
 import kotlinx.serialization.json.Json
+import javax.inject.Inject
 
 
 /**
  * GitHub REST APIでリポジトリーを検索するためのAPI
  * @param httpRequestExecutor HTTPリクエストを実行するためのクラス
  */
-class GitHubRepositorySearchApi(private val httpRequestExecutor: HttpRequestExecutor) :
+class GitHubRepositorySearchApi @Inject constructor(private val httpRequestExecutor: HttpRequestExecutor) :
     GitHubRepositorySearchService {
     private val messageBuilder = GitHubMessageBuilder.repositorySearch
 
