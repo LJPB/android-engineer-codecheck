@@ -44,6 +44,7 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
             }
         return HttpResponseMessage(
             status = response.status,
+            statusMessage = response.statusMessage,
             body = repositorySearchResult,
             headers = response.headers
         )

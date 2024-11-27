@@ -25,6 +25,7 @@ class RepositorySearchViewModel @Inject constructor(
         MutableStateFlow(
             HttpResponseMessage(
                 status = HttpStatus.INITIAL,
+                statusMessage = "",
                 headers = mapOf(),
                 body = RepositorySearchResult(repositories = listOf())
             )

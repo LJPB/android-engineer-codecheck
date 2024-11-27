@@ -72,6 +72,7 @@ private fun RepositorySearchScreenPreview() {
         repositoryOnClick = {},
         searchResult = HttpResponseMessage(
             status = HttpStatus.INITIAL,
+            statusMessage = "",
             headers = mapOf(),
             body = RepositorySearchResult(repositories = listOf())
         )
