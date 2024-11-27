@@ -4,6 +4,7 @@ import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchRe
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
 import jp.co.yumemi.android.code_check.data.repository.http.common.HttpRequest
 import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
+import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitParser
@@ -36,7 +37,7 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
 
         // 検索結果をJsonからRepositorySearchResultにパース
         val repositorySearchResult =
-            if (response.body.isNotEmpty() && response.status == 200) { // ハードコードは要修正！
+            if (response.body.isNotEmpty() && response.status == HttpStatus.SUCCESS) { // ハードコードは要修正！
                 val json = Json {
                     ignoreUnknownKeys = true
                 }

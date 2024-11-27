@@ -20,4 +20,6 @@ object HttpStatus {
      * 読み込み中
      */
     const val LOADING = 0
+
+    const val SUCCESS = 200
 }

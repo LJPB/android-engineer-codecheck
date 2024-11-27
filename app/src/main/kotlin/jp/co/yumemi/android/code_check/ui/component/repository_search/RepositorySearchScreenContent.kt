@@ -51,8 +51,7 @@ fun RepositorySearchScreenContent(
             onSearch = onSearch
         )
         when (searchResponse.status) {
-            // TODO: ハードコード 要修正!
-            200 -> RepositoryList(
+            HttpStatus.SUCCESS -> RepositoryList(
                 repositoryDetailList = searchResponse.body.responseBody.repositories,
                 itemOnClick = repositoryOnClick
             )
