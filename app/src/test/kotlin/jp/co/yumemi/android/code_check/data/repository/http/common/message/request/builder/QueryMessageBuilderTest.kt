@@ -1,10 +1,9 @@
-package jp.co.yumemi.android.code_check.data.repository.http.github.request
+package jp.co.yumemi.android.code_check.data.repository.http.common.message.request.builder
 
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpMethod
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.Url
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.UrlProtocol
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
-import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.builder.QueryMessageBuilder
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

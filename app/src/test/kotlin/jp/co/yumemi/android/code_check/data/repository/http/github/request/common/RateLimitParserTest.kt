@@ -1,7 +1,6 @@
-package jp.co.yumemi.android.code_check.data.repository.http.github.request
+package jp.co.yumemi.android.code_check.data.repository.http.github.request.common
 
 import jp.co.yumemi.android.code_check.data.model.http.github.RateLimitData
-import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitParser
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
