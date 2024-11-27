@@ -10,7 +10,7 @@ package jp.co.yumemi.android.code_check.data.model.http.github
  * @param reset [remaining]がリセットされるUTCエポック秒
  */
 data class RateLimitData(
-    val retryAfter: Int?,
-    val remaining: Int,
-    val reset: Long?
+    val retryAfter: Int? = null,
+    val remaining: Int? = null,
+    val reset: Long? = null
 )

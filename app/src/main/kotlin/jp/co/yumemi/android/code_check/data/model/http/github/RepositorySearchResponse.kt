@@ -7,7 +7,7 @@ package jp.co.yumemi.android.code_check.data.model.http.github
  * @param responseBody 検索結果
  */
 data class RepositorySearchResponse(
-    val rateLimitData: RateLimitData? = null,
+    val rateLimitData: RateLimitData = RateLimitData(),
     val hasNextPage: Boolean = false,
     val responseBody: RepositorySearchResult = RepositorySearchResult()
 )
