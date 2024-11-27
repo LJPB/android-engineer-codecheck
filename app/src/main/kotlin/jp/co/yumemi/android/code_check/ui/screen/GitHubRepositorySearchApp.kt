@@ -29,10 +29,10 @@ fun GitHubRepositorySearchApp(
 ) {
     val navController = rememberNavController()
 
-    // 現在のネットの接続状況に関するコールバック
     val context = LocalContext.current
     // ネットの接続状況
     var networkIsActive by remember { mutableStateOf(true) }
+    // 現在のネットの接続状況に関するコールバック
     getSystemService(context, ConnectivityManager::class.java)?.registerDefaultNetworkCallback(
         object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
@@ -48,6 +48,8 @@ fun GitHubRepositorySearchApp(
     Scaffold { paddingValue ->
         Column(modifier = modifier.padding(paddingValue)) {
             AnimatedVisibility(!networkIsActive) {
+                // contentはtrueで表示される
+                // networkIsActiveがfalseの時にエラーメッセージを表示したいから!networkIsActiveを渡している
                 NetworkErrorMessage()
             }
             NavHost(
