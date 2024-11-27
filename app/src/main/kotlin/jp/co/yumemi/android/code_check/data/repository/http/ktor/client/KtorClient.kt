@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.repository.http.ktor.executor
+package jp.co.yumemi.android.code_check.data.repository.http.ktor.client
 
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.ResponseException
@@ -12,14 +12,13 @@ import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import io.ktor.http.headers
-import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
+import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpClient
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpMethod
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.Url
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.UrlProtocol
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequestMessage
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
-import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.HttpClientProvider
 
 /**
  * Ktor ClientでHTTP通信のリクエストを行うクラス
@@ -27,7 +26,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.HttpClie
  * このクラスではcloseに触れていないことに注意
  * @param clientProvider HttpClientのProvider
  */
-class KtorExecutor(private val clientProvider: HttpClientProvider) : HttpRequestExecutor {
+class KtorClient(private val clientProvider: HttpClientProvider) : HttpClient {
     /**
      * HTTPリクエストを実行する
      * @param requestMessage リクエストに関するリクエストメッセージ
@@ -56,6 +55,14 @@ class KtorExecutor(private val clientProvider: HttpClientProvider) : HttpRequest
             headers = responseHeaders,
             body = responseBody
         )
+    }
+
+    override fun setUp() {
+        TODO("Not yet implemented")
+    }
+
+    override fun close() {
+        clientProvider.close()
     }
 
     /**

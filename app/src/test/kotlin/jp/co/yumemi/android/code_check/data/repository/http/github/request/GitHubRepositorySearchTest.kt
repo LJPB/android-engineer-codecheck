@@ -4,7 +4,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search.GitHubRepositorySearchApi
 import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.HttpClientProvider
-import jp.co.yumemi.android.code_check.data.repository.http.ktor.executor.KtorExecutor
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.KtorClient
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -15,7 +15,7 @@ class GitHubRepositorySearchApiTest {
     @Before
     fun setUp() {
         searchApi = GitHubRepositorySearchApi(
-            KtorExecutor(
+            KtorClient(
                 object : HttpClientProvider {
                     private var client: HttpClient? = HttpClient(Android)
                     override fun getClient(): HttpClient {

@@ -2,13 +2,13 @@ package jp.co.yumemi.android.code_check.data.repository.http.common.executor.kto
 
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
 import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.GitHubHttpClientProvider
-import jp.co.yumemi.android.code_check.data.repository.http.ktor.executor.KtorExecutor
+import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.KtorClient
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class KtorExecutorTest {
-    private lateinit var ktorExecutor: KtorExecutor
+class KtorClientTest {
+    private lateinit var ktorClient: KtorClient
     private val requestMessage =
         GitHubMessageBuilder.repositorySearch.run {
             appendParameter("q" to "kotlin")
@@ -18,7 +18,7 @@ class KtorExecutorTest {
 
     @Before
     fun setUp() {
-        ktorExecutor = KtorExecutor(GitHubHttpClientProvider)
+        ktorClient = KtorClient(GitHubHttpClientProvider)
     }
 
     /**
@@ -26,7 +26,7 @@ class KtorExecutorTest {
      */
     @Test
     fun request(): Unit = runBlocking {
-        val response = ktorExecutor.request(requestMessage)
+        val response = ktorClient.request(requestMessage)
         println(response.headers)
         assert(true)
     }
