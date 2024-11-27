@@ -6,6 +6,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.HttpRequest
 import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
+import jp.co.yumemi.android.code_check.data.util.LinkHeaderParser
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
@@ -46,7 +47,10 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
         return HttpResponseMessage(
             status = response.status,
             statusMessage = response.statusMessage,
-            body = RepositorySearchResponse(responseBody = repositorySearchResult),
+            body = RepositorySearchResponse(
+                hasNextPage = hasNextPage(response.headers["link"]?.joinToString() ?: ""),
+                responseBody = repositorySearchResult
+            ),
             headers = response.headers
         )
     }
@@ -66,4 +70,7 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
     override fun pageOf(number: Int) {
         messageBuilder.appendParameter(RepositorySearchQueryType.Page.KEY to number.toString())
     }
+
+    private fun hasNextPage(linkHeaderString: String): Boolean =
+        LinkHeaderParser.getLink(linkHeaderString, "next") != null
 }
