@@ -1,12 +1,19 @@
 package jp.co.yumemi.android.code_check.ui.component.repository_search
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.focusTarget
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,8 +43,24 @@ fun RepositorySearchScreenContent(
     repositoryOnClick: (RepositoryDetail) -> Unit,
     searchResponse: HttpResponseMessage<RepositorySearchResponse>
 ) {
+    // リップルエフェクトを無効にするためのもの
+    val interactionSource = remember { MutableInteractionSource() }
+
+    // 親Columnにフォーカスを伝播させるためのもの
+    val focusRequester = remember { FocusRequester() }
+
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val hideKeyboard: () -> Unit = { keyboardController?.hide() }
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .focusRequester(focusRequester)
+            .focusTarget()
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = hideKeyboard
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AppSearchBar(
@@ -48,7 +71,10 @@ fun RepositorySearchScreenContent(
             placeHolderText = stringResource(R.string.searchInputText_hint),
             onQueryChange = onQueryChange,
             onQueryClear = onQueryClear,
-            onSearch = onSearch
+            onSearch = {
+                hideKeyboard()
+                onSearch(it)
+            }
         )
         when (searchResponse.status) {
             HttpStatus.SUCCESS -> RepositoryList(
