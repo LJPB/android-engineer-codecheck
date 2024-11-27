@@ -36,6 +36,7 @@ class RepositorySearchViewModel @Inject constructor(
      * 単語でリポジトリを検索する
      */
     fun searchWithWord(word: String) = viewModelScope.launch {
+        _repositorySearchResponse.update { it.copy(status = HttpStatus.LOADING) } // 読み込み中に設定
         val result = searchApi.search(word)
         _searchWord.update { word }
         _repositorySearchResponse.update { result }

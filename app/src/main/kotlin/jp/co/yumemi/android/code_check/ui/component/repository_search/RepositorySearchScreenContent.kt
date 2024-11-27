@@ -23,6 +23,7 @@ import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchRe
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
+import jp.co.yumemi.android.code_check.ui.component.common.LoadingScreen
 
 /**
  * 検索画面に表示する内容
@@ -84,6 +85,8 @@ fun RepositorySearchScreenContent(
                 repositoryDetailList = searchResponse.body.responseBody.repositories,
                 itemOnClick = repositoryOnClick
             )
+
+            HttpStatus.LOADING -> LoadingScreen(message = stringResource(R.string.nowSearch))
         }
     }
 }
