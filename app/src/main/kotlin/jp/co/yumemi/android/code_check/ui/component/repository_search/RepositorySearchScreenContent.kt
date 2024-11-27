@@ -36,6 +36,7 @@ import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
 @Composable
 fun RepositorySearchScreenContent(
     modifier: Modifier = Modifier,
+    networkIsActive: Boolean,
     query: String,
     onQueryChange: (String) -> Unit,
     onQueryClear: () -> Unit,
@@ -72,8 +73,10 @@ fun RepositorySearchScreenContent(
             onQueryChange = onQueryChange,
             onQueryClear = onQueryClear,
             onSearch = {
-                hideKeyboard()
-                onSearch(it)
+                if (networkIsActive && it.isNotBlank()) { // ネットに接続していて、かつ入力文字が空白でない場合に検索できる
+                    hideKeyboard()
+                    onSearch(it)
+                }
             }
         )
         when (searchResponse.status) {
@@ -90,6 +93,7 @@ fun RepositorySearchScreenContent(
 private fun RepositorySearchScreenPreview() {
     RepositorySearchScreenContent(
         modifier = Modifier,
+        networkIsActive = true,
         query = "query",
         onQueryChange = {},
         onQueryClear = {},
