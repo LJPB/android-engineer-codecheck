@@ -1,5 +1,12 @@
-> [!CAUTION]
-> 提出前にREADMEを更新する！
+### 環境
+
+- IDE：Android Studio Ladybug | 2024.2.1
+- Kotlin：2.0.0
+- JDK：21
+- Gradle：8.9
+- minSdk：31
+- targetSdk：35
+
 
 <details>
 <summary>オリジナルのREADME.md</summary>
