@@ -1,6 +1,6 @@
 package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search
 
-import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
+import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResponse
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 
 /**
@@ -75,7 +75,7 @@ interface GitHubRepositorySearchService {
      * 検索する
      * @param word 検索ワード
      */
-    suspend fun search(word: String): HttpResponseMessage<RepositorySearchResult>
+    suspend fun search(word: String): HttpResponseMessage<RepositorySearchResponse>
 
     /**
      * 検索結果を並び替えるクエリの設定

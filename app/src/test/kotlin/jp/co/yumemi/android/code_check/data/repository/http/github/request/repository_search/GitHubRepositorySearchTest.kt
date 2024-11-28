@@ -1,6 +1,5 @@
-package jp.co.yumemi.android.code_check.data.repository.http.github.request
+package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search
 
-import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search.GitHubRepositorySearchApi
 import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.KtorRequestClient
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -22,7 +21,6 @@ class GitHubRepositorySearchApiTest {
     @Test
     fun searchTest() = runBlocking {
         val response = searchApi.search("kotlin")
-        response.body.repositories.forEach { println(it) }
         assert(response.status == 200)
     }
 
@@ -33,8 +31,7 @@ class GitHubRepositorySearchApiTest {
     fun perPageTest() = runBlocking {
         searchApi.prePage(1)
         val response = searchApi.search("kotlin")
-        response.body.repositories.forEach { println(it) }
-        assert(response.body.repositories.size == 1)
+        assert(response.body.responseBody.repositories.size == 1)
     }
 
     /**
@@ -45,6 +42,6 @@ class GitHubRepositorySearchApiTest {
         searchApi.prePage(1)
         val beforeResponse = searchApi.search("kotlin")
         val afterResponse = searchApi.search("kotlin")
-        assert(beforeResponse.body.repositories.size != afterResponse.body.repositories.size)
+        assert(beforeResponse.body.responseBody.repositories.size != afterResponse.body.responseBody.repositories.size)
     }
 }

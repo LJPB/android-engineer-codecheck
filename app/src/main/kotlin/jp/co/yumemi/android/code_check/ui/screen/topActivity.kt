@@ -3,11 +3,15 @@
  */
 package jp.co.yumemi.android.code_check.ui.screen
 
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.material3.MaterialTheme
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpRequestClient
 import javax.inject.Inject
@@ -17,14 +21,35 @@ class TopActivity : ComponentActivity() {
     @Inject
     lateinit var httpClient: HttpRequestClient
 
-    // TODO: RepositorySearchScreenで検索したDate()をRepositoryDetailScreenでLog.d("検索した日時", ...)の形式でLogcatに表示
+    private val appViewModel: AppViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val connectivityManager =
+            ContextCompat.getSystemService(this, ConnectivityManager::class.java)
+
+        // ネットの接続状況の初期化
+        appViewModel.changeNetworkState(connectivityManager?.activeNetwork != null)
+
+        // 現在のネットの接続状況に関するコールバック
+        connectivityManager?.registerDefaultNetworkCallback(
+            object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    appViewModel.changeNetworkState(true)
+                }
+
+                override fun onLost(network: Network) {
+                    appViewModel.changeNetworkState(false)
+                }
+            }
+        )
+
         httpClient.setUp()
         enableEdgeToEdge()
         setContent {
             MaterialTheme {
-                GitHubRepositorySearchApp()
+                GitHubRepositorySearchApp(viewModel = appViewModel)
             }
         }
     }

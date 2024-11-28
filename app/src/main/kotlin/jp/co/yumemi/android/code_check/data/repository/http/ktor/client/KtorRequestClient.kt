@@ -50,12 +50,13 @@ class KtorRequestClient : HttpRequestClient {
                 headers { requestHeaders.build() }
             }
         }
-
         val responseHeaders = httpResponse?.headers?.toMap() ?: emptyMap()
+        val statusMessage = httpResponse?.status?.description ?: ""
         val responseBody = httpResponse?.bodyAsText() ?: ""
 
         return HttpResponseMessage(
             status = responseStatus,
+            statusMessage = statusMessage,
             headers = responseHeaders,
             body = responseBody
         )
