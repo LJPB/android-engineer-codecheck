@@ -30,6 +30,8 @@ import jp.co.yumemi.android.code_check.ui.component.common.LoadingStatus
 /**
  * 検索画面に表示する内容
  * @param isNetworkActive ネットワークの接続状況
+ * @param loadingStatus 次のページの読み込み状況
+ * @param loadContent 次のページの読み込みアクション
  * @param query 検索バーに表示するテキスト
  * @param onQueryChange 検索バーの入力イベント
  * @param onQueryClear [query]のクリアイベント
