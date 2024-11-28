@@ -17,7 +17,7 @@ import jp.co.yumemi.android.code_check.ui.component.common.CenterContainer
 fun EmptyScreen(
     modifier: Modifier = Modifier,
 ) {
-    CenterContainer(modifier = modifier) {
+    CenterContainer(modifier = modifier.fillMaxSize()) {
         Text(
             style = MaterialTheme.typography.bodyLarge,
             text = stringResource(R.string.searchResultEmpty)
