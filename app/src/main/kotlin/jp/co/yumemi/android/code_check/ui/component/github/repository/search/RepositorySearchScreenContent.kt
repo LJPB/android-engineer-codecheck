@@ -23,6 +23,7 @@ import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchRe
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitStatusCodes
+import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository.RepositorySearchQueryType
 import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
 import jp.co.yumemi.android.code_check.ui.component.common.LoadingScreen
 import jp.co.yumemi.android.code_check.ui.component.common.LoadingStatus
@@ -36,6 +37,12 @@ import jp.co.yumemi.android.code_check.ui.component.common.LoadingStatus
  * @param onQueryChange 検索バーの入力イベント
  * @param onQueryClear [query]のクリアイベント
  * @param onSearch 検索
+ * @param currentSort 現在指定しているソートの条件
+ * @param currentOrder 現在指定している並び順の条件
+ * @param sortOnClick ソートの条件を選択した時のイベント
+ * @param orderOnClick 並び順の条件を選択した時のイベント
+ * @param clearSort ソートの条件のクリアイベント
+ * @param clearOrder 並び順の条件のクリアイベント
  * @param repositoryOnClick 検索結果として表示されるリポジトリのクリックイベント
  * @param responseMessage 検索結果
  */
@@ -49,6 +56,12 @@ fun RepositorySearchScreenContent(
     onQueryChange: (String) -> Unit,
     onQueryClear: () -> Unit,
     onSearch: (String) -> Unit,
+    currentSort: RepositorySearchQueryType.Sort?,
+    currentOrder: RepositorySearchQueryType.Order?,
+    sortOnClick: (RepositorySearchQueryType.Sort) -> Unit,
+    orderOnClick: (RepositorySearchQueryType.Order) -> Unit,
+    clearSort: () -> Unit,
+    clearOrder: () -> Unit,
     repositoryOnClick: (RepositoryDetail) -> Unit,
     responseMessage: HttpResponseMessage<RepositorySearchResponse>
 ) {
@@ -88,6 +101,15 @@ fun RepositorySearchScreenContent(
                     onSearch(it)
                 }
             }
+        )
+        QueryChooser(
+            modifier = Modifier.padding(8.dp),
+            currentOrder = currentOrder,
+            currentSort = currentSort,
+            sortOnClick = sortOnClick,
+            orderOnClick = orderOnClick,
+            clearSort = clearSort,
+            clearOrder = clearOrder
         )
         when (responseMessage.status) {
             // REST APIで返されるステータスコード (https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes)
@@ -133,6 +155,12 @@ private fun RepositorySearchScreenPreview() {
         onQueryChange = {},
         onQueryClear = {},
         onSearch = {},
+        currentOrder = null,
+        currentSort = null,
+        sortOnClick = {},
+        orderOnClick = {},
+        clearSort = {},
+        clearOrder = {},
         repositoryOnClick = {},
         responseMessage = HttpResponseMessage(
             status = HttpStatus.INITIAL,
