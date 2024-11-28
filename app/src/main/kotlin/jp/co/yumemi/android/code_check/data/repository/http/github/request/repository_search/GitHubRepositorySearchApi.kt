@@ -52,7 +52,9 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
             body = RepositorySearchResponse(
                 searchWord = word,
                 rateLimitData = RateLimitParser.getRateLimitData(response.headers),
-                hasNextPage = hasNextPage(response.headers["link"]?.joinToString() ?: ""),
+                hasNextPage = hasNextPage(
+                    response.headers["link"]?.joinToString(separator = "") ?: ""
+                ),
                 responseBody = repositorySearchResult
             ),
             headers = response.headers
