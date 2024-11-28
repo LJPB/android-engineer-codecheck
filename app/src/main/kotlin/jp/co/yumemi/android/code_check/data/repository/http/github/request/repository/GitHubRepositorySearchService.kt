@@ -65,8 +65,8 @@ object RepositorySearchQueryType {
          */
         val key = "order"
 
-        data object Desc : Sort("desc")
-        data object Asc : Sort("asc")
+        data object Desc : Order("desc")
+        data object Asc : Order("asc")
     }
 }
 
