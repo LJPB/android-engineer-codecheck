@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.screen.repository_search
+package jp.co.yumemi.android.code_check.ui.screen.github.repository.search
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -9,7 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.ui.component.repository_search.RepositorySearchScreenContent
+import jp.co.yumemi.android.code_check.ui.component.github.repository.search.RepositorySearchScreenContent
 import kotlinx.serialization.Serializable
 
 @Composable

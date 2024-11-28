@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.screen.repository_detail
+package jp.co.yumemi.android.code_check.ui.screen.github.repository.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

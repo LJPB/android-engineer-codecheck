@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.screen.repository_search
+package jp.co.yumemi.android.code_check.ui.screen.github.repository.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,7 +7,7 @@ import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchRe
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitStatusCodes
-import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search.GitHubRepositorySearchService
+import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository.GitHubRepositorySearchService
 import jp.co.yumemi.android.code_check.ui.component.common.LoadingStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search
+package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository
 
 import jp.co.yumemi.android.code_check.data.repository.http.ktor.client.KtorRequestClient
 import kotlinx.coroutines.runBlocking

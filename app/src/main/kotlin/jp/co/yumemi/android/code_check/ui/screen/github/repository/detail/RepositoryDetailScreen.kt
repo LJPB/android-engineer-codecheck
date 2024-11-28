@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.screen.repository_detail
+package jp.co.yumemi.android.code_check.ui.screen.github.repository.detail
 
 import android.net.Uri
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.window.core.layout.WindowWidthSizeClass
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
-import jp.co.yumemi.android.code_check.ui.component.repository_detail.RepositoryDetailScreenContent
+import jp.co.yumemi.android.code_check.ui.component.github.repository.detail.RepositoryDetailScreenContent
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

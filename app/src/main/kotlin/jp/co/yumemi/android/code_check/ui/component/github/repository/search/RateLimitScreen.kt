@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.component.repository_search
+package jp.co.yumemi.android.code_check.ui.component.github.repository.search
 
 import android.content.Intent
 import android.net.Uri

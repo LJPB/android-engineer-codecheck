@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.screen
+package jp.co.yumemi.android.code_check.ui.screen.github.repository
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
@@ -13,10 +13,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import jp.co.yumemi.android.code_check.ui.component.common.NetworkErrorMessage
-import jp.co.yumemi.android.code_check.ui.screen.repository_detail.RepositoryDetailDestination
-import jp.co.yumemi.android.code_check.ui.screen.repository_detail.repositoryDetailScreen
-import jp.co.yumemi.android.code_check.ui.screen.repository_search.RepositorySearchDestination
-import jp.co.yumemi.android.code_check.ui.screen.repository_search.repositorySearchScreen
+import jp.co.yumemi.android.code_check.ui.screen.AppViewModel
+import jp.co.yumemi.android.code_check.ui.screen.github.repository.detail.RepositoryDetailDestination
+import jp.co.yumemi.android.code_check.ui.screen.github.repository.detail.repositoryDetailScreen
+import jp.co.yumemi.android.code_check.ui.screen.github.repository.search.RepositorySearchDestination
+import jp.co.yumemi.android.code_check.ui.screen.github.repository.search.repositorySearchScreen
 
 @Composable
 fun GitHubRepositorySearchApp(
