@@ -4,8 +4,8 @@ import jp.co.yumemi.android.code_check.data.model.http.github.RateLimitData
 
 object RateLimitParser {
     private const val RETRY_AFTER = "retry-after"
-    private const val REMAINING = "x-ratelimit-remaining-after"
-    private const val RESET = "retry-x-ratelimit-reset"
+    private const val REMAINING = "x-ratelimit-remaining"
+    private const val RESET = "x-ratelimit-reset"
 
     fun getRateLimitData(header: Map<String, List<String>>): RateLimitData {
         val retryAfter = header[RETRY_AFTER]?.joinToString(separator = "")?.toInt()
