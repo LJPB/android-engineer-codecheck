@@ -21,16 +21,19 @@ fun RepositorySearchScreen(
 ) {
     val searchResponse by viewModel.repositorySearchResponse.collectAsState()
     val searchWord by viewModel.searchWord.collectAsState()
+    val loadingStatus by viewModel.loadingStatus.collectAsState()
     val isNetworkActive by networkState
     RepositorySearchScreenContent(
         modifier = modifier,
         isNetworkActive = isNetworkActive,
+        loadingStatus = loadingStatus,
+        loadContent = viewModel::loadNextPage,
         query = searchWord,
         onQueryChange = viewModel::changeSearchWord,
         onQueryClear = viewModel::clearSearchWord,
         onSearch = viewModel::searchWithWord,
         repositoryOnClick = repositoryOnClick,
-        searchResponse = searchResponse
+        responseMessage = searchResponse
     )
 }
 

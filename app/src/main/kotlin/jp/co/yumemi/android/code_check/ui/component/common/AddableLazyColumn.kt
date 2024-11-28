@@ -79,7 +79,7 @@ fun AddableLazyColumn(
         content()
         when (loadingStatus) {
             LoadingStatus.Success -> success()
-            LoadingStatus.Loading -> loading()
+            LoadingStatus.Loading -> if (loadable) loading() // 追加読み込み可能な状態で読み込み中の時にのみ表示r
             LoadingStatus.Failed -> failed()
             else -> {}
         }

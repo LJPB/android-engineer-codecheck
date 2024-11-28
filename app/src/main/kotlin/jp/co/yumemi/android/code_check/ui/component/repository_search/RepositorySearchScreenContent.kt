@@ -1,6 +1,5 @@
 package jp.co.yumemi.android.code_check.ui.component.repository_search
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -25,6 +24,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.commo
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
 import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
 import jp.co.yumemi.android.code_check.ui.component.common.LoadingScreen
+import jp.co.yumemi.android.code_check.ui.component.common.LoadingStatus
 
 /**
  * 検索画面に表示する内容
@@ -34,18 +34,20 @@ import jp.co.yumemi.android.code_check.ui.component.common.LoadingScreen
  * @param onQueryClear [query]のクリアイベント
  * @param onSearch 検索
  * @param repositoryOnClick 検索結果として表示されるリポジトリのクリックイベント
- * @param searchResponse 検索結果
+ * @param responseMessage 検索結果
  */
 @Composable
 fun RepositorySearchScreenContent(
     modifier: Modifier = Modifier,
     isNetworkActive: Boolean,
+    loadingStatus: LoadingStatus,
+    loadContent: () -> Unit,
     query: String,
     onQueryChange: (String) -> Unit,
     onQueryClear: () -> Unit,
     onSearch: (String) -> Unit,
     repositoryOnClick: (RepositoryDetail) -> Unit,
-    searchResponse: HttpResponseMessage<RepositorySearchResponse>
+    responseMessage: HttpResponseMessage<RepositorySearchResponse>
 ) {
     // リップルエフェクトを無効にするためのもの
     val interactionSource = remember { MutableInteractionSource() }
@@ -78,26 +80,32 @@ fun RepositorySearchScreenContent(
             onQueryChange = onQueryChange,
             onQueryClear = onQueryClear,
             onSearch = {
-                Log.d("networkState", isNetworkActive.toString())
                 if (isNetworkActive && it.isNotBlank()) { // ネットに接続していて、かつ入力文字が空白でない場合に検索できる
                     hideKeyboard()
                     onSearch(it)
                 }
             }
         )
-        when (searchResponse.status) {
+        when (responseMessage.status) {
             // REST APIで返されるステータスコード (https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#search-repositories--status-codes)
-            HttpStatus.SUCCESS -> SearchResultScreen(
-                searchWord = searchResponse.body.searchWord,
-                repositoryDetailList = searchResponse.body.responseBody.repositories,
-                itemOnClick = repositoryOnClick
-            )
+            HttpStatus.SUCCESS -> {
+                if (responseMessage.body.responseBody.repositories.isEmpty()) {
+                    EmptyScreen()
+                } else {
+                    RepositoryList(
+                        repositorySearchResponse = responseMessage.body,
+                        loadingStatus = loadingStatus,
+                        loadContent = loadContent,
+                        itemOnClick = repositoryOnClick
+                    )
+                }
+            }
 
             HttpStatus.NOT_MODIFIED,
             HttpStatus.UNPROCESSABLE_ENTITY,
             HttpStatus.SERVER_UNAVAILABLE -> SearchErrorScreen(
-                statusCode = searchResponse.status,
-                message = searchResponse.statusMessage
+                statusCode = responseMessage.status,
+                message = responseMessage.statusMessage
             )
 
             HttpStatus.LOADING -> LoadingScreen(message = stringResource(R.string.nowSearch))
@@ -113,12 +121,14 @@ private fun RepositorySearchScreenPreview() {
     RepositorySearchScreenContent(
         modifier = Modifier,
         isNetworkActive = true,
+        loadingStatus = LoadingStatus.Loading,
+        loadContent = {},
         query = "query",
         onQueryChange = {},
         onQueryClear = {},
         onSearch = {},
         repositoryOnClick = {},
-        searchResponse = HttpResponseMessage(
+        responseMessage = HttpResponseMessage(
             status = HttpStatus.INITIAL,
             statusMessage = "",
             headers = mapOf(),
