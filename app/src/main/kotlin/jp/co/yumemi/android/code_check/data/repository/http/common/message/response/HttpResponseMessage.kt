@@ -5,6 +5,7 @@ import jp.co.yumemi.android.code_check.data.repository.http.common.message.commo
 /**
  * HTTPリクエストの結果として取得するレスポンスメッセージ
  * @param status ステータスコード
+ * @param statusMessage ステータスコードに対応するメッセージ
  * @param headers ヘッダー key: valueの関係
  * @param body メッセージボディ
  */

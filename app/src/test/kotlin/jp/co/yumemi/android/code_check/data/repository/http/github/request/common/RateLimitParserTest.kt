@@ -6,8 +6,8 @@ import org.junit.Test
 
 class RateLimitParserTest {
     private val retryAfter = "retry-after"
-    private val remaining = "x-ratelimit-remaining-after"
-    private val reset = "retry-x-ratelimit-reset"
+    private val remaining = "x-ratelimit-remaining"
+    private val reset = "x-ratelimit-reset"
 
     private val expectRetryAfter = 0
     private val expectRemaining = 100

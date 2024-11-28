@@ -41,6 +41,7 @@ class RepositorySearchViewModel @Inject constructor(
     private val _pageNumber = MutableStateFlow(defaultPageNumber)
     private val pageNumber = _pageNumber.asStateFlow()
 
+    // 追加読み込みの状況
     private val _loadingStatus = MutableStateFlow(LoadingStatus.Initial)
     val loadingStatus = _loadingStatus.asStateFlow()
 
