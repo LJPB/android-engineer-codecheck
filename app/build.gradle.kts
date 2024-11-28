@@ -77,9 +77,9 @@ dependencies {
     // Compose関連
     val composeBom = platform("androidx.compose:compose-bom:2024.10.01")
     implementation(composeBom)
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.tooling.preview)
 
     // アダプティブレイアウト
     implementation(libs.androidx.material3.adaptive)
@@ -93,18 +93,18 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     // 画像読み込みライブラリCoilのCompose用
-    implementation("io.coil-kt.coil3:coil-compose:3.0.3")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.3")
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     androidTestImplementation(composeBom)
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation(libs.androidx.ui.tooling)
 
     // UI Tests
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation("androidx.activity:activity-compose:1.9.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // JUnit
     testImplementation(libs.junit)
