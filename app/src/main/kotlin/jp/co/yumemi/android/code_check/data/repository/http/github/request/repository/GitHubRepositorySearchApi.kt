@@ -19,6 +19,8 @@ import javax.inject.Inject
 class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecutor) :
     HttpRequest(executor), GitHubRepositorySearchService {
     private val messageBuilder = GitHubMessageBuilder.repositorySearch
+    private var sort: RepositorySearchQueryType.Sort? = null
+    private var order: RepositorySearchQueryType.Order? = null
 
     /**
      * 検索する
@@ -46,11 +48,14 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
                 // レスポンスボディを取得できなければ空のRepositorySearchResultを検索結果として設定する
                 RepositorySearchResult(repositories = listOf())
             }
+
         return HttpResponseMessage(
             status = response.status,
             statusMessage = response.statusMessage,
             body = RepositorySearchResponse(
                 searchWord = word,
+                sort = sort,
+                order = order,
                 rateLimitData = RateLimitParser.getRateLimitData(response.headers),
                 hasNextPage = hasNextPage(
                     response.headers["link"]?.joinToString(separator = "") ?: ""
@@ -62,10 +67,12 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
     }
 
     override fun sortBy(type: RepositorySearchQueryType.Sort) {
+        sort = type
         messageBuilder.appendParameter(type.key to type.value)
     }
 
     override fun orderBy(type: RepositorySearchQueryType.Order) {
+        order = type
         messageBuilder.appendParameter(type.key to type.value)
     }
 

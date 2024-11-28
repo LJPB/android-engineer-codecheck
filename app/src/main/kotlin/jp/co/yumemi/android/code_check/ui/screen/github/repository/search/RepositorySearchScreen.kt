@@ -22,6 +22,8 @@ fun RepositorySearchScreen(
     val searchResponse by viewModel.repositorySearchResponse.collectAsState()
     val searchWord by viewModel.searchWord.collectAsState()
     val loadingStatus by viewModel.loadingStatus.collectAsState()
+    val currentSort by viewModel.currentSort.collectAsState()
+    val currentOrder by viewModel.currentOrder.collectAsState()
     val isNetworkActive by networkState
     RepositorySearchScreenContent(
         modifier = modifier,
@@ -32,6 +34,12 @@ fun RepositorySearchScreen(
         onQueryChange = viewModel::changeSearchWord,
         onQueryClear = viewModel::clearSearchWord,
         onSearch = viewModel::searchWithWord,
+        currentSort = currentSort,
+        currentOrder = currentOrder,
+        sortOnClick = viewModel::setSort,
+        orderOnClick = viewModel::setOrder,
+        clearOrder = viewModel::clearOrder,
+        clearSort = viewModel::clearSort,
         repositoryOnClick = repositoryOnClick,
         responseMessage = searchResponse
     )
