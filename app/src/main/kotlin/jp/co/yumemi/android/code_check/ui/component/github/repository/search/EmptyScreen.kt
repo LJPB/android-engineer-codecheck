@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.component.repository_search
+package jp.co.yumemi.android.code_check.ui.component.github.repository.search
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme

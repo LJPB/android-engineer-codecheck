@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.ui.component.repository_detail
+package jp.co.yumemi.android.code_check.ui.component.github.repository.detail
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

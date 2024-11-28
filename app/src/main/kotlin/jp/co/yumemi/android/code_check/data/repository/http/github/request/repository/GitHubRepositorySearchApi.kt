@@ -1,12 +1,12 @@
-package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search
+package jp.co.yumemi.android.code_check.data.repository.http.github.request.repository
 
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResponse
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResult
-import jp.co.yumemi.android.code_check.data.repository.http.common.HttpRequest
 import jp.co.yumemi.android.code_check.data.repository.http.common.executor.HttpRequestExecutor
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
+import jp.co.yumemi.android.code_check.data.repository.http.common.message.request.HttpRequest
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
-import jp.co.yumemi.android.code_check.data.repository.http.github.request.GitHubMessageBuilder
+import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.GitHubMessageBuilder
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitParser
 import jp.co.yumemi.android.code_check.data.util.LinkHeaderParser
 import kotlinx.serialization.json.Json

@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpRequestClient
+import jp.co.yumemi.android.code_check.ui.screen.github.repository.GitHubRepositorySearchApp
 import javax.inject.Inject
 
 @AndroidEntryPoint
