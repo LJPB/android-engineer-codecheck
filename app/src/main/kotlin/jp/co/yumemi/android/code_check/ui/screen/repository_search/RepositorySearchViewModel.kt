@@ -1,12 +1,12 @@
 package jp.co.yumemi.android.code_check.ui.screen.repository_search
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResponse
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
+import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitStatusCodes
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository_search.GitHubRepositorySearchService
 import jp.co.yumemi.android.code_check.ui.component.common.LoadingStatus
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -56,11 +56,9 @@ class RepositorySearchViewModel @Inject constructor(
                 body = RepositorySearchResponse()
             )
         }
-        Log.d("response", repositorySearchResponse.toString())
         _pageNumber.update { defaultPageNumber } // 新規検索だからページ番号をリセット
         _loadingStatus.update { LoadingStatus.Initial }  // 新規検索だから追加読み込み状況をリセット
         val result = searchApi.search(word)
-        Log.d("result", result.toString())
         _repositorySearchResponse.update { result }
     }
 
@@ -110,6 +108,14 @@ class RepositorySearchViewModel @Inject constructor(
                 _loadingStatus.update { LoadingStatus.Success }
             }
 
+            in RateLimitStatusCodes -> {
+                // レート制限の時はレート制限画面に移動したいから、_repositorySearchResponseを書き換える
+                _repositorySearchResponse.update { result }
+                _loadingStatus.update { LoadingStatus.Failed }
+            }
+
+            // その他エラーの時はすでに取得してある検索結果は表示したままにしたいから
+            // _repositorySearchResponseは書き換えない
             else -> _loadingStatus.update { LoadingStatus.Failed }
         }
     }

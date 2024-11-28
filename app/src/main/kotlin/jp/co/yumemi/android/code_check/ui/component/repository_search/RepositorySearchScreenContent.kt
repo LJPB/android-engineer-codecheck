@@ -22,6 +22,7 @@ import jp.co.yumemi.android.code_check.data.model.http.github.RepositoryDetail
 import jp.co.yumemi.android.code_check.data.model.http.github.RepositorySearchResponse
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.common.HttpStatus
 import jp.co.yumemi.android.code_check.data.repository.http.common.message.response.HttpResponseMessage
+import jp.co.yumemi.android.code_check.data.repository.http.github.request.common.RateLimitStatusCodes
 import jp.co.yumemi.android.code_check.ui.component.common.AppSearchBar
 import jp.co.yumemi.android.code_check.ui.component.common.LoadingScreen
 import jp.co.yumemi.android.code_check.ui.component.common.LoadingStatus
@@ -107,6 +108,9 @@ fun RepositorySearchScreenContent(
                 statusCode = responseMessage.status,
                 message = responseMessage.statusMessage
             )
+
+            // レート制限
+            in RateLimitStatusCodes -> RateLimitScreen(rateLimitData = responseMessage.body.rateLimitData)
 
             HttpStatus.LOADING -> LoadingScreen(message = stringResource(R.string.nowSearch))
             HttpStatus.TIMEOUT -> SearchErrorScreen(message = stringResource(R.string.timeout))
