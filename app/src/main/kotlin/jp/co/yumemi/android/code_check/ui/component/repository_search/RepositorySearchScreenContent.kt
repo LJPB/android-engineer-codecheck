@@ -8,9 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +28,7 @@ import jp.co.yumemi.android.code_check.ui.component.common.LoadingScreen
 
 /**
  * 検索画面に表示する内容
+ * @param isNetworkActive ネットワークの接続状況
  * @param query 検索バーに表示するテキスト
  * @param onQueryChange 検索バーの入力イベント
  * @param onQueryClear [query]のクリアイベント
@@ -41,7 +39,7 @@ import jp.co.yumemi.android.code_check.ui.component.common.LoadingScreen
 @Composable
 fun RepositorySearchScreenContent(
     modifier: Modifier = Modifier,
-    networkIsActive: MutableState<Boolean>,
+    isNetworkActive: Boolean,
     query: String,
     onQueryChange: (String) -> Unit,
     onQueryClear: () -> Unit,
@@ -57,8 +55,6 @@ fun RepositorySearchScreenContent(
 
     val keyboardController = LocalSoftwareKeyboardController.current
     val hideKeyboard: () -> Unit = { keyboardController?.hide() }
-
-    val networkState by networkIsActive
 
     Column(
         modifier = modifier
@@ -82,8 +78,8 @@ fun RepositorySearchScreenContent(
             onQueryChange = onQueryChange,
             onQueryClear = onQueryClear,
             onSearch = {
-                Log.d("networkState", networkState.toString())
-                if (networkState && it.isNotBlank()) { // ネットに接続していて、かつ入力文字が空白でない場合に検索できる
+                Log.d("networkState", isNetworkActive.toString())
+                if (isNetworkActive && it.isNotBlank()) { // ネットに接続していて、かつ入力文字が空白でない場合に検索できる
                     hideKeyboard()
                     onSearch(it)
                 }
@@ -116,7 +112,7 @@ fun RepositorySearchScreenContent(
 private fun RepositorySearchScreenPreview() {
     RepositorySearchScreenContent(
         modifier = Modifier,
-        networkIsActive = mutableStateOf(true),
+        isNetworkActive = true,
         query = "query",
         onQueryChange = {},
         onQueryClear = {},

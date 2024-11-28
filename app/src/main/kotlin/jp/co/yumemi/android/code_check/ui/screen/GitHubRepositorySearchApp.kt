@@ -1,18 +1,15 @@
 package jp.co.yumemi.android.code_check.ui.screen
 
-import android.net.ConnectivityManager
-import android.net.Network
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import jp.co.yumemi.android.code_check.ui.component.common.NetworkErrorMessage
@@ -24,31 +21,18 @@ import jp.co.yumemi.android.code_check.ui.screen.repository_search.repositorySea
 @Composable
 fun GitHubRepositorySearchApp(
     modifier: Modifier = Modifier,
+    viewModel: AppViewModel
 ) {
     val navController = rememberNavController()
 
-    val context = LocalContext.current
-    val connectivityManager = getSystemService(context, ConnectivityManager::class.java)
-    // ネットの接続状況
-    val networkIsActive = remember { mutableStateOf(connectivityManager?.activeNetwork != null) }
-    // 現在のネットの接続状況に関するコールバック
-    connectivityManager?.registerDefaultNetworkCallback(
-        object : ConnectivityManager.NetworkCallback() {
-            override fun onAvailable(network: Network) {
-                networkIsActive.value = true
-            }
-
-            override fun onLost(network: Network) {
-                networkIsActive.value = false
-            }
-        }
-    )
+    val networkState = viewModel.networkState.collectAsStateWithLifecycle()
+    val isNetworkActive by networkState
 
     Scaffold { paddingValue ->
         Column(modifier = modifier.padding(paddingValue)) {
-            AnimatedVisibility(!networkIsActive.value) {
+            AnimatedVisibility(!isNetworkActive) {
                 // contentはtrueで表示される
-                // networkIsActiveがfalseの時にエラーメッセージを表示したいから!networkIsActiveを渡している
+                // isNetworkActiveがfalseの時にエラーメッセージを表示したいから!networkIsActiveを渡している
                 NetworkErrorMessage()
             }
             NavHost(
@@ -56,7 +40,7 @@ fun GitHubRepositorySearchApp(
                 startDestination = RepositorySearchDestination
             ) {
                 // リポジトリーの検索画面 かつ ホーム画面
-                repositorySearchScreen(networkIsActive = networkIsActive) {
+                repositorySearchScreen(networkState = networkState) {
                     navController.navigate(RepositoryDetailDestination(it))
                 }
 
@@ -72,5 +56,6 @@ fun GitHubRepositorySearchApp(
 private fun GitHubRepositorySearchAppPreview() {
     GitHubRepositorySearchApp(
         modifier = Modifier,
+        viewModel = viewModel()
     )
 }
