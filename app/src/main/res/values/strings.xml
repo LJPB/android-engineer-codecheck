@@ -16,4 +16,11 @@
     <string name="nowSearch">検索中</string>
     <string name="timeout">検索に時間がかかりタイムアウトしました</string>
     <string name="unknown">不明なエラー</string>
+
+    <string name="rateLimit">レート制限</string>
+    <string name="rateLimitRetryAfter">retry-after : %s</string>
+    <string name="rateLimitRemaining">x-ratelimit-remaining : %s</string>
+    <string name="rateLimitReset">x-ratelimit-reset : %s</string>
+    <string name="rateLimitReference">参考情報</string>
+    <string name="rateLimitReferenceUrl">https://docs.github.com/ja/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#checking-the-status-of-your-rate-limit</string>
 </resources>
