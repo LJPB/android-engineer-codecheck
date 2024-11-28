@@ -13,6 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.co.yumemi.android.code_check.R
 
+/**
+ * インターネットに接続していない時に表示するコンテント
+ */
 @Composable
 fun NetworkErrorMessage(modifier: Modifier = Modifier) {
     Surface(

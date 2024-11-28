@@ -37,7 +37,7 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
 
         // 検索結果をJsonからRepositorySearchResultにパース
         val repositorySearchResult =
-            if (response.body.isNotEmpty() && response.status == HttpStatus.SUCCESS) { // ハードコードは要修正！
+            if (response.body.isNotEmpty() && response.status == HttpStatus.SUCCESS) {
                 val json = Json {
                     ignoreUnknownKeys = true
                 }
