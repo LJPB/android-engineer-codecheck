@@ -10,11 +10,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.material3.MaterialTheme
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.data.repository.http.common.client.HttpRequestClient
 import jp.co.yumemi.android.code_check.ui.screen.github.repository.GitHubRepositorySearchApp
+import jp.co.yumemi.android.code_check.ui.theme.AppTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -49,7 +49,7 @@ class TopActivity : ComponentActivity() {
         httpClient.setUp()
         enableEdgeToEdge()
         setContent {
-            MaterialTheme {
+            AppTheme {
                 GitHubRepositorySearchApp(viewModel = appViewModel)
             }
         }
