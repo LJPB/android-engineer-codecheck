@@ -19,6 +19,12 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class TopActivity : ComponentActivity() {
+
+    // HttpRequestClientはViewModel内でのみ(間接的に)使用しているため
+    // setUpやcloseなどの処理はViewModelのライフサイクルで行うと無駄がありませんでした
+    // 具体的には(今の実装では)AppViewModelのinitブロックでsetUpを呼び、onClearedでcloseを呼ぶと良かったです
+    // Activityでこれらの処理を行った場合、画面が回転しただけでもcloseと再取得が行われて無駄な処理が発生してしまいます
+    // ただし、(Ktorの)HttpClient(Engine)の使い回しの安全性については学習が足りていないので、真に適切な呼び出しタイミングはわかっていません
     @Inject
     lateinit var httpClient: HttpRequestClient
 
