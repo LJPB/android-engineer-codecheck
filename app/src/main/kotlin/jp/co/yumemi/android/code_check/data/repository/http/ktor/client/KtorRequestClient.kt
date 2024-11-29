@@ -31,6 +31,8 @@ class KtorRequestClient : HttpRequestClient {
     private val timeOutMills = 5000L // 5秒でタイムアウト
     private var httpClient: HttpClient = getClient()
 
+    // REFLECT : requestメソッドの処理(runWithTryCatch内)はwithContext(Dispatchers.IO) で囲んでIOスレッドで呼ぶべきでした
+    // そうするとメインセーフティな実装になりました
     /**
      * HTTPリクエストを実行する
      * @param requestMessage リクエストに関するリクエストメッセージ
@@ -41,7 +43,6 @@ class KtorRequestClient : HttpRequestClient {
         val requestMethod = getKtorHttpMethod(requestMessage.httpMethod)
         val requestUrl = getKtorUrlBuilder(requestMessage.url).build()
         val requestHeaders = getKtorHeaders(requestMessage.headers)
-
         // レスポンスと対応するステータスコードの取得
         val (httpResponse, responseStatus) = runWithTryCatch {
             httpClient.request {
