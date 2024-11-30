@@ -5,6 +5,8 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+// こちらは「リポジトリ」と長音記号がついていません
+
 /**
  * リポジトリの検索結果を格納するデータクラス
  */

@@ -2,6 +2,7 @@ package jp.co.yumemi.android.code_check.data.model.http.github
 
 import jp.co.yumemi.android.code_check.data.repository.http.github.request.repository.RepositorySearchQueryType
 
+// こちらは「リポジトリー」と長音記号がついています
 /**
  * リポジトリーの検索結果を格納
  * @param searchWord 検索した単語
