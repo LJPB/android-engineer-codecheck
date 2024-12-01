@@ -38,6 +38,8 @@ class RepositorySearchViewModel @Inject constructor(
     private val _searchWord: MutableStateFlow<String> = MutableStateFlow("")
     val searchWord = _searchWord.asStateFlow()
 
+    // REFLECT : UI表示に使っていないのでStateFlowである必要がありませんでした
+    // 普通にIntで管理するか、RepositorySearchResponseに現在のページ番号を持たせると良かったです
     // 現在取得した最大のページ番号
     private val defaultPageNumber = 1
     private val _pageNumber = MutableStateFlow(defaultPageNumber)

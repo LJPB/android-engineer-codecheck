@@ -49,13 +49,22 @@ class GitHubRepositorySearchApi @Inject constructor(executor: HttpRequestExecuto
                 RepositorySearchResult(repositories = listOf())
             }
 
+        // 以下の条件の時にバグ(実際のクエリと返される値(^1の矛盾)が発生します
+        // 条件 :
+        //      1. setSortまたはsetOrderを呼んだ後に、searchを呼ぶ (条件付きで検索)
+        //      2. 1の後にsearchを呼ぶ (条件付き検索後に条件なしで検索)
+        //      3. 2の検索で返される(^1)を参照する
+        // 原因 :  
+        //      セットしたクエリはmessageBuilder.clear()で検索のたびにリセットされますが
+        //      このクラスのプロパティとしてのsortやorderを初期化(nullを代入)していないため、条件2で返される値(^1)に条件1の時のsortやorderがセットされてしまうためです
+        // 解決 : いくつかありますが、messageBuilderから追加したクエリを取得できるようにすれば、このクラスでsortやorderを管理しなくて良くなります
         return HttpResponseMessage(
             status = response.status,
             statusMessage = response.statusMessage,
             body = RepositorySearchResponse(
                 searchWord = word,
-                sort = sort,
-                order = order,
+                sort = sort, // ^1
+                order = order, // ^1
                 rateLimitData = RateLimitParser.getRateLimitData(response.headers),
                 hasNextPage = hasNextPage(
                     response.headers["link"]?.joinToString(separator = "") ?: ""
