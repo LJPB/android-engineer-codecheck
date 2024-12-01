@@ -18,5 +18,6 @@ data class RepositorySearchResponse(
     val order: RepositorySearchQueryType.Order? = null,
     val rateLimitData: RateLimitData = RateLimitData(),
     val hasNextPage: Boolean = false,
+    // REFLECT : searchResultという名前の方が型名とも一致しており、わかりやすかったです
     val responseBody: RepositorySearchResult = RepositorySearchResult(),
 )
